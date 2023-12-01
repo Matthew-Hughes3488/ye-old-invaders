@@ -1,5 +1,14 @@
-.game-board{
-    border: 2px solid red;
-    width: 80vw;
-    height: 80vh;
+.game-board {
+  border: 2px solid red;
+  width: 80vw;
+  height: 80vh;
+
+  &__player-character{
+    width: 200px;
+    height: 200px;
+}
+  &__goblin {
+    width: 150px;
+    height: 150px;
+  }
 }
