@@ -12,8 +12,7 @@ const gameBoard = document.querySelector(".game-board");
 if (!gameBoard) throw new Error("Query error");
 
 const getGoblinHTML = (goblinIdNumber: number) => {
-  return;
-  `<img class="game-board__goblin game-board--goblin-${goblinIdNumber}" src="./images/goblin.png" alt="">`;
+  return `<img class="game-board__goblin game-board--goblin-${goblinIdNumber}" src="./images/goblin.png" alt="">`;
 };
 
 const populateBoardWithGoblins = (numberOfGoblins: number) => {
