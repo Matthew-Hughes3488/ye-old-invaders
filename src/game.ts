@@ -152,7 +152,6 @@ class Game {
 
   private removeFireball(fireBall: Projectile) {
     this.gameBoardElement.removeChild(fireBall.element);
-    this.clearFireBallAndCollisionIntervals()
   }
 
   private updateFireBallPosition(fireBall: Projectile) {
@@ -233,6 +232,11 @@ class Game {
     this.addWizardToBoard();
     this.gameEventListeners();
     this.goblinMovementInterval();
+  }
+
+  private allGoblinsDead(): boolean {
+    if (this.goblins.length === 0) return true;
+    else return false;
   }
 }
 
