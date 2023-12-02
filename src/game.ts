@@ -214,7 +214,7 @@ class Game {
   private goblinMovementInterval() {
     this.goblinMovementIntervalId = setInterval(() => {
       this.updateGoblinPosition();
-    }, 3000);
+    }, 1000);
   }
 
   private gameEventListeners() {
@@ -227,15 +227,6 @@ class Game {
         this.manageFireball();
       }
     });
-  }
-
-  public startGame() {
-    document.body.appendChild(this.gameBoardElement);
-    this.populateBoardWithGoblins(this.goblins);
-    this.addWizardToBoard();
-    this.gameEventListeners();
-    this.goblinMovementInterval();
-    this.gameOverInterval();
   }
 
   private allGoblinsDead(): boolean {
@@ -305,6 +296,15 @@ class Game {
 
   private clearGameBoard() {
     this.gameBoardElement.innerHTML = "";
+  }
+
+  public startGame() {
+    document.body.appendChild(this.gameBoardElement);
+    this.populateBoardWithGoblins(this.goblins);
+    this.addWizardToBoard();
+    this.gameEventListeners();
+    this.goblinMovementInterval();
+    this.gameOverInterval();
   }
 
   public stopGame(didWin: boolean) {
