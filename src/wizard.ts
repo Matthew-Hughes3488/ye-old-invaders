@@ -1,6 +1,11 @@
 class Wizard{
     private xCordinate : number = 4
     private yCordinate : number = 8
+    public wizardElement : HTMLImageElement;
+
+    constructor(){
+        this.wizardElement = this.getWizardHTML();
+    }
 
     public getWizardHTML(){
         const wizardElement = document.createElement("img");

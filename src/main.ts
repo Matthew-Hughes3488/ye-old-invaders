@@ -39,7 +39,7 @@ const populateBoardWithGoblins = (goblins: Goblin[]) => {
  * @returns {void}
  */
 const addWizardToBoard = () => {
-  gameBoard.appendChild(wizard.getWizardHTML())
+  gameBoard.appendChild(wizard.wizardElement)
 };
 
 populateBoardWithGoblins(goblins);
