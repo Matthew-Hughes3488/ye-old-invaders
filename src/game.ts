@@ -157,10 +157,9 @@ class Game {
 
   private updateFireBallPosition(fireBall: Projectile) {
     if (fireBall.getYCordinate() === 1) {
-        this.removeFireball(fireBall);
-        this.clearFireBallAndCollisionIntervals();
-    }
-    else fireBall.moveUp();
+      this.removeFireball(fireBall);
+      this.clearFireBallAndCollisionIntervals();
+    } else fireBall.moveUp();
   }
 
   private manageFireball() {
@@ -260,9 +259,9 @@ class Game {
 
   private gameOverChecker() {
     if (this.allGoblinsDead()) {
-      //to be implemented
+      this.stopGame(true);
     } else if (this.goblinsDestroyedWizard()) {
-      //to be implemented
+      this.stopGame(false);
     }
   }
 
@@ -303,9 +302,17 @@ class Game {
       this.gameOverIntervalId = undefined;
     }
   }
-  
+
   private clearGameBoard() {
     this.gameBoardElement.innerHTML = "";
+  }
+
+  public stopGame(didWin: boolean) {
+    this.clearAllIntervals();
+    this.clearGameBoard();
+
+    if (didWin) this.gameBoardElement.appendChild(this.youWinHTML());
+    else this.gameBoardElement.appendChild(this.youLoseHTML());
   }
 }
 
