@@ -6,9 +6,9 @@ class Game {
   private goblins: Goblin[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
-  private goblinMovementIntervalId: number | null = null;
-  private fireballUpdateIntervalId: number | null = null;
-  private collisionCheckerIntervalId: number | null = null;
+  private goblinMovementIntervalId?: number  = undefined;
+  private fireballUpdateIntervalId?: number  = undefined;
+  private collisionCheckerIntervalId?: number  = undefined;
 
   constructor() {
     this.goblins = [
@@ -160,7 +160,7 @@ class Game {
   }
 
   private manageFireball() {
-    if (!this.fireballUpdateIntervalId) {
+    if (this.fireballUpdateIntervalId === undefined) {
       const fireBall = this.createFireball();
 
       this.fireballUpdateIntervalId = setInterval(() => {
@@ -169,6 +169,17 @@ class Game {
       this.collisionCheckerIntervalId = setInterval(() => {
         this.collisionChecker(fireBall);
       }, 500);
+    }
+  }
+
+  private clearFireBallAndCollisionIntervals() {
+    if (this.fireballUpdateIntervalId !== undefined) {
+        clearInterval(this.fireballUpdateIntervalId)
+      this.fireballUpdateIntervalId = undefined;
+    }
+    if (this.collisionCheckerIntervalId !== undefined) {
+        clearInterval(this.collisionCheckerIntervalId)
+      this.collisionCheckerIntervalId = undefined;
     }
   }
 
@@ -192,6 +203,7 @@ class Game {
       ) {
         this.destroyGoblin(goblin);
         this.removeFireball(fireBall);
+        this.clearFireBallAndCollisionIntervals();
       }
     });
   }
