@@ -28,7 +28,7 @@ if (!gameBoard) throw new Error("Query error");
  */
 const populateBoardWithGoblins = (goblins: Goblin[]) => {
   goblins.forEach(goblin =>{
-    gameBoard.appendChild(goblin.getGoblinHTML())
+    gameBoard.appendChild(goblin.goblinElement)
   })
 };
 

@@ -1,11 +1,13 @@
 class Goblin{
+    private static numOfGoblins = 1;
     private xCordinate : number
     private yCordinate : number
-    private static numOfGoblins = 1;
+    public goblinElement : HTMLImageElement
 
     constructor(xValue : number, yValue : number) {
         this.xCordinate = xValue;
         this.yCordinate = yValue;
+        this.goblinElement = this.getGoblinHTML()
     }
 
     public getGoblinHTML(){
@@ -16,6 +18,10 @@ class Goblin{
         goblinElement.style.gridColumn = `${this.xCordinate} / span 1`;
         goblinElement.style.gridRow = `${this.yCordinate} / span 1`;
         return goblinElement;
+    }
+
+    public renderGoblin(){
+
     }
 
     public moveDown(){
