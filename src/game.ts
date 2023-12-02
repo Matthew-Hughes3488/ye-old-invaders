@@ -9,6 +9,7 @@ class Game {
   private goblinMovementIntervalId?: number = undefined;
   private fireballUpdateIntervalId?: number = undefined;
   private collisionCheckerIntervalId?: number = undefined;
+  private gameOverIntervalId?: number = undefined;
 
   constructor() {
     this.goblins = [
@@ -232,6 +233,7 @@ class Game {
     this.addWizardToBoard();
     this.gameEventListeners();
     this.goblinMovementInterval();
+    this.gameOverInterval();
   }
 
   private allGoblinsDead(): boolean {
@@ -259,6 +261,12 @@ class Game {
     } else if (this.goblinsDestroyedWizard()) {
       //to be implemented
     }
+  }
+
+  private gameOverInterval() {
+    this.gameOverIntervalId = setInterval(() => {
+      this.gameOverChecker();
+    }, 1000);
   }
 }
 
