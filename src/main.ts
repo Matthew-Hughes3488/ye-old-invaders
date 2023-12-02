@@ -1,6 +1,7 @@
 import "./main.scss";
 import Goblin from "./goblin";
 import Wizard from "./wizard";
+import Projectile from "./projectile";
 
 const goblins: Goblin[] = [
   new Goblin(1, 1),
@@ -128,27 +129,35 @@ setInterval(() => {
 }, 5000);
 
 const handleLeftWizardMovement = () => {
-  if(wizard.getXCordinate() != 1){
+  if (wizard.getXCordinate() != 1) {
     wizard.moveLeft();
     wizard.updateWizardCordinates();
   }
 };
 
 const handleRightWizardMovement = () => {
-  if(wizard.getXCordinate() != 8){
+  if (wizard.getXCordinate() != 8) {
     wizard.moveRight();
     wizard.updateWizardCordinates();
   }
 };
 
+const handleFireball = () =>{
+  const xValue = wizard.getXCordinate();
+  const yValue = wizard.getYCordinate() - 1;
+  const fireBall = new Projectile(xValue, yValue);
+  gameBoard.appendChild(fireBall.projectileElement)
+}
+
 // Event lister for when the player wanst to move the wizard character
 document.addEventListener("keydown", (event) => {
   if (event.code === "ArrowLeft") {
-    console.log("Left arrow key pressed");
     handleLeftWizardMovement();
-  } else if (event.code == "ArrowRight") {
-    console.log("right arrow pressed");
-    // function that deals with right wizard movement
+  } else if (event.code === "ArrowRight") {
     handleRightWizardMovement();
+  } else if (event.code === "Space") {
+    console.log("space bar was pressed");
+    //Function to create and move the projectile
+    handleFireball();
   }
 });
