@@ -175,9 +175,9 @@ class Game {
   }
 
   private clearFireBallAndCollisionIntervals() {
-    if (this.fireballUpdateIntervalId !== undefined) {
-      clearInterval(this.fireballUpdateIntervalId);
-      this.fireballUpdateIntervalId = undefined;
+    if (this.gameOverIntervalId !== undefined) {
+      clearInterval(this.gameOverIntervalId);
+      this.gameOverIntervalId = undefined;
     }
     if (this.collisionCheckerIntervalId !== undefined) {
       clearInterval(this.collisionCheckerIntervalId);
@@ -255,24 +255,37 @@ class Game {
     }
   }
 
-  private gameOverInterval(){
+  private gameOverInterval() {
     this.gameOverIntervalId = setInterval(() => {
-        this.gameOverChecker();
-      }, 500);
+      this.gameOverChecker();
+    }, 500);
   }
 
-  private youWinHTML(): HTMLHeadElement{
-    const message = document.createElement("h1")
-    message.classList.add("game-board__you-win-message")
-    message.textContent = "Well Done, you slayed the goblin hoard"
+  private youWinHTML(): HTMLHeadElement {
+    const message = document.createElement("h1");
+    message.classList.add("game-board__you-win-message");
+    message.textContent = "Well Done, you slayed the goblin hoard";
     return message;
   }
 
-  private youLoseHTML(){
-    const message = document.createElement("h1")
-    message.classList.add("game-board__you-lose-message")
-    message.textContent = "Well Done, you slayed the goblin hoard"
+  private youLoseHTML(): HTMLHeadElement {
+    const message = document.createElement("h1");
+    message.classList.add("game-board__you-lose-message");
+    message.textContent = "You failed, the city... is lost";
     return message;
+  }
+
+  private clearAllIntervals() {
+    this.clearFireBallAndCollisionIntervals();
+
+    if (this.fireballUpdateIntervalId !== undefined) {
+      clearInterval(this.fireballUpdateIntervalId);
+      this.fireballUpdateIntervalId = undefined;
+    }
+    if (this.goblinMovementIntervalId !== undefined) {
+      clearInterval(this.goblinMovementIntervalId);
+      this.goblinMovementIntervalId = undefined;
+    }
   }
 
   public startGame() {
