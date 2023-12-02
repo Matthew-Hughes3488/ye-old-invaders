@@ -303,6 +303,10 @@ class Game {
       this.gameOverIntervalId = undefined;
     }
   }
+  
+  private clearGameBoard() {
+    this.gameBoardElement.innerHTML = "";
+  }
 }
 
 export default Game;
