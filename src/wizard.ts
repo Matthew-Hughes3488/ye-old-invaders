@@ -1,10 +1,10 @@
 class Wizard {
   private xCordinate: number = 4;
   private yCordinate: number = 8;
-  public wizardElement: HTMLImageElement;
+  public element: HTMLImageElement;
 
   constructor() {
-    this.wizardElement = this.getWizardHTML();
+    this.element = this.getHTML();
   }
 
   public getXCordinate(): number {
@@ -15,7 +15,7 @@ class Wizard {
     return this.yCordinate;
   }
 
-  private getWizardHTML() {
+  private getHTML() {
     const wizardElement = document.createElement("img");
     wizardElement.src = "./src/images/wizard.png";
     wizardElement.classList.add("game-board__player-character");
@@ -24,19 +24,19 @@ class Wizard {
     return wizardElement;
   }
 
-  public updateWizardCordinates() {
-    this.wizardElement.style.gridColumn = `${this.xCordinate} / span 1`;
-    this.wizardElement.style.gridRow = `${this.yCordinate} / span 1`;
+  public updateCordinates() {
+    this.element.style.gridColumn = `${this.xCordinate} / span 1`;
+    this.element.style.gridRow = `${this.yCordinate} / span 1`;
   }
 
   public moveRight() {
     this.xCordinate++;
-    this.updateWizardCordinates();
+    this.updateCordinates();
   }
 
   public moveLeft() {
     this.xCordinate--;
-    this.updateWizardCordinates();
+    this.updateCordinates();
   }
 }
 

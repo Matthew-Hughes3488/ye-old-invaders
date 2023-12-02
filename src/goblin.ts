@@ -2,13 +2,13 @@ class Goblin {
   private static numOfGoblins = 1;
   private xCordinate: number;
   private yCordinate: number;
-  public goblinElement: HTMLImageElement;
+  public element: HTMLImageElement;
   public static movementDirection: string = "right";
 
   constructor(xValue: number, yValue: number) {
     this.xCordinate = xValue;
     this.yCordinate = yValue;
-    this.goblinElement = this.getGoblinHTML();
+    this.element = this.getHTML();
   }
 
   public getXCordinate(): number {
@@ -19,7 +19,7 @@ class Goblin {
     return this.yCordinate;
   }
 
-  private getGoblinHTML() {
+  private getHTML() {
     const goblinElement = document.createElement("img");
     goblinElement.src = "./src/images/goblin.png";
     goblinElement.classList.add("game-board__goblin");
@@ -29,24 +29,24 @@ class Goblin {
     return goblinElement;
   }
 
-  public updateGoblinCordinates() {
-    this.goblinElement.style.gridColumn = `${this.xCordinate} / span 1`;
-    this.goblinElement.style.gridRow = `${this.yCordinate} / span 1`;
+  public updateCordinates() {
+    this.element.style.gridColumn = `${this.xCordinate} / span 1`;
+    this.element.style.gridRow = `${this.yCordinate} / span 1`;
   }
 
   public moveDown() {
     this.yCordinate++;
-    this.updateGoblinCordinates();
+    this.updateCordinates();
   }
 
   public moveRight() {
     this.xCordinate++;
-    this.updateGoblinCordinates();
+    this.updateCordinates();
   }
 
   public moveLeft() {
     this.xCordinate--;
-    this.updateGoblinCordinates();
+    this.updateCordinates();
   }
 }
 
