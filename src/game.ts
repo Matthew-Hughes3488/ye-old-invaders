@@ -6,6 +6,9 @@ class Game {
   private goblins: Goblin[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
+  private goblinMovementIntervalId: number | null = null;
+  private fireballUpdateIntervalId: number | null = null;
+  private collisionCheckerIntervalId: number | null = null;
 
   constructor() {
     this.goblins = [
@@ -157,23 +160,24 @@ class Game {
   }
 
   private manageFireball() {
-    const fireBall = this.createFireball();
+    if (!this.fireballUpdateIntervalId) {
+      const fireBall = this.createFireball();
 
-    const fireBallInterval = setInterval(() => {
-      this.updateFireBallPosition(fireBall);
-    }, 500);
-
-    const collisionCheckerInterval = setInterval(() => {
-        this.collisionChecker(fireBall)
+      this.fireballUpdateIntervalId = setInterval(() => {
+        this.updateFireBallPosition(fireBall);
       }, 500);
+      this.collisionCheckerIntervalId = setInterval(() => {
+        this.collisionChecker(fireBall);
+      }, 500);
+    }
   }
 
-  private destroyGoblin(destroyedGoblin : Goblin) {
+  private destroyGoblin(destroyedGoblin: Goblin) {
     //removed goblin element from the screen
     this.gameBoardElement.removeChild(destroyedGoblin.element);
     //remove goblin from goblins array
-    this.goblins = this.goblins.filter(goblin => {
-        return !(goblin.goblinID === destroyedGoblin.goblinID)
+    this.goblins = this.goblins.filter((goblin) => {
+      return !(goblin.goblinID === destroyedGoblin.goblinID);
     });
   }
 
@@ -193,7 +197,7 @@ class Game {
   }
 
   private goblinMovementInterval() {
-    setInterval(() => {
+    this.goblinMovementIntervalId = setInterval(() => {
       this.updateGoblinPosition();
     }, 5000);
   }
