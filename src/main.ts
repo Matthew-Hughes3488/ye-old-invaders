@@ -75,7 +75,6 @@ const haveReachedEndOfBoard = (goblins: Goblin[]): boolean => {
 const moveGoblinsDown = (goblins: Goblin[]) => {
   goblins.forEach((goblin) => {
     goblin.moveDown();
-    goblin.updateGoblinCordinates();
   });
 
   if (Goblin.movementDirection === "right") Goblin.movementDirection = "left";
@@ -93,12 +92,10 @@ const moveGoblinsHorizontailly = (goblins: Goblin[]) => {
   if (Goblin.movementDirection === "right") {
     goblins.forEach((goblin) => {
       goblin.moveRight();
-      goblin.updateGoblinCordinates();
     });
   } else {
     goblins.forEach((goblin) => {
       goblin.moveLeft();
-      goblin.updateGoblinCordinates();
     });
   }
 };
@@ -131,23 +128,40 @@ setInterval(() => {
 const handleLeftWizardMovement = () => {
   if (wizard.getXCordinate() != 1) {
     wizard.moveLeft();
-    wizard.updateWizardCordinates();
   }
 };
 
 const handleRightWizardMovement = () => {
   if (wizard.getXCordinate() != 8) {
     wizard.moveRight();
-    wizard.updateWizardCordinates();
   }
 };
 
-const handleFireball = () =>{
+const createFireball = (): Projectile => {
   const xValue = wizard.getXCordinate();
   const yValue = wizard.getYCordinate() - 1;
   const fireBall = new Projectile(xValue, yValue);
-  gameBoard.appendChild(fireBall.projectileElement)
+  gameBoard.appendChild(fireBall.projectileElement);
+  return fireBall;
+};
+
+const removeFireball = (fireBall : Projectile) =>{
+  gameBoard.removeChild(fireBall.projectileElement)
 }
+
+const updateFireBallPosition = (fireBall: Projectile) => {
+  if(fireBall.getYCordinate() === 1)
+    removeFireball(fireBall);
+  fireBall.moveUp();
+};
+
+const manageFireball = () => {
+  const fireBall = createFireball();
+
+  setInterval(() => {
+    updateFireBallPosition(fireBall);
+  }, 500);
+};
 
 // Event lister for when the player wanst to move the wizard character
 document.addEventListener("keydown", (event) => {
@@ -158,6 +172,6 @@ document.addEventListener("keydown", (event) => {
   } else if (event.code === "Space") {
     console.log("space bar was pressed");
     //Function to create and move the projectile
-    handleFireball();
+    manageFireball();
   }
 });
