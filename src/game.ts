@@ -164,7 +164,15 @@ class Game {
     }, 500);
   }
 
-  
+  private destroyGoblin(destroyedGoblin : Goblin) {
+    //removed goblin element from the screen
+    this.gameBoardElement.removeChild(destroyedGoblin.element);
+    //remove goblin from goblins array
+    this.goblins = this.goblins.filter(goblin => {
+        return !(goblin.goblinID === destroyedGoblin.goblinID)
+    });
+    
+  }
 
   private collisionChecker(fireBall: Projectile) {
     const fireBallXCoordinate = fireBall.getXCordinate();
