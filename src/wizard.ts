@@ -16,17 +16,19 @@ class Wizard{
         return wizardElement;
     }
 
-    public updateWizardCoordinates () {
+    public updateWizardCordinates() {
         this.wizardElement.style.gridColumn = `${this.xCordinate} / span 1`;
         this.wizardElement.style.gridRow = `${this.yCordinate} / span 1`;
     }
 
     public moveRight(){
         this.xCordinate++;
+        this.updateWizardCordinates();
     }
 
     public moveLeft(){
         this.xCordinate--;
+        this.updateWizardCordinates();
     }
 }
 

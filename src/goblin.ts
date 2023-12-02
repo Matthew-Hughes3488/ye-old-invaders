@@ -20,24 +20,24 @@ class Goblin{
         return goblinElement;
     }
 
-    public updateGoblinCoordinates(){
+    public updateGoblinCordinates(){
         this.goblinElement.style.gridColumn = `${this.xCordinate} / span 1`;
         this.goblinElement.style.gridRow = `${this.yCordinate} / span 1`;
     }
 
     public moveDown(){
         this.yCordinate++;
-        this.updateGoblinCoordinates()
+        this.updateGoblinCordinates()
     }
 
     public moveRight(){
         this.xCordinate++;
-        this.updateGoblinCoordinates()
+        this.updateGoblinCordinates()
     }
 
     public moveLeft(){
         this.xCordinate--;
-        this.updateGoblinCoordinates()
+        this.updateGoblinCordinates()
     }
 }
 
