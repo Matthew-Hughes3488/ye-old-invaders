@@ -1,29 +1,46 @@
 import "./main.scss";
+import Goblin from "./goblin";
+import Wizard from "./wizard";
 
-/* Generate goblins feature
-    function to get goblin HTML
-    DOM to get game board
-    function to populate the board with x goblins
-    will update in the future to create goblin objects
-    and place them on the board based on the x and y attributes 
-    */
+const goblins : Goblin[] = [
+    new Goblin(1, 1),
+    new Goblin(2, 1),
+    new Goblin(3, 1),
+    new Goblin(4, 1),
+    new Goblin(5, 1),
+    new Goblin(1, 2),
+    new Goblin(2, 2),
+    new Goblin(3, 2),
+    new Goblin(4, 2),
+    new Goblin(5, 2)
+]
+
+const wizard = new Wizard()
 
 const gameBoard = document.querySelector(".game-board");
 if (!gameBoard) throw new Error("Query error");
 
-const getGoblinHTML = (goblinIdNumber: number) => {
-  return `<img class="game-board__goblin game-board--goblin-${goblinIdNumber}" src="./images/goblin.png" alt="">`;
+/**
+ * Populates the game board with goblin elements.
+ *
+ * @param {Goblin[]} goblins - An array of Goblin instances.
+ * @returns {void}
+ */
+const populateBoardWithGoblins = (goblins: Goblin[]) => {
+  goblins.forEach(goblin =>{
+    gameBoard.appendChild(goblin.goblinElement)
+  })
 };
 
-const populateBoardWithGoblins = (numberOfGoblins: number) => {
-  for (let i = 1; i <= numberOfGoblins; i++) {
-    gameBoard.innerHTML += getGoblinHTML(i);
-  }
-};
-
+/**
+ * Populates the game board with a wizard element.
+ *
+ * @param {Wizard} wizard - A wizard object.
+ * @returns {void}
+ */
 const addWizardToBoard = () => {
-  gameBoard.innerHTML += `<img class="game-board__player-character" src="./images/wizard.png" alt="">`;
+  gameBoard.appendChild(wizard.wizardElement)
 };
 
-populateBoardWithGoblins(10);
+populateBoardWithGoblins(goblins);
 addWizardToBoard();
