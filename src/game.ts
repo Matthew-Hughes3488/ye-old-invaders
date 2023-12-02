@@ -152,8 +152,8 @@ class Game {
   }
 
   private removeFireball(fireBall: Projectile) {
-    this.gameBoardElement.removeChild(fireBall.element);
-    this.clearFireBallAndCollisionIntervals();
+      this.clearFireBallAndCollisionIntervals();
+      this.gameBoardElement.removeChild(fireBall.element);
   }
 
   private updateFireBallPosition(fireBall: Projectile) {
@@ -301,7 +301,7 @@ class Game {
     this.gameOverInterval();
   }
 
-  public stopGame(didWin:boolean) {
+  public stopGame(didWin: boolean) {
     this.clearAllIntervals();
     this.clearGameBoard();
 
