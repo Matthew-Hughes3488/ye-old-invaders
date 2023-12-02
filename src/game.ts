@@ -261,6 +261,20 @@ class Game {
       }, 500);
   }
 
+  private youWinHTML(): HTMLHeadElement{
+    const message = document.createElement("h1")
+    message.classList.add("game-board__you-win-message")
+    message.textContent = "Well Done, you slayed the goblin hoard"
+    return message;
+  }
+
+  private youLoseHTML(){
+    const message = document.createElement("h1")
+    message.classList.add("game-board__you-lose-message")
+    message.textContent = "Well Done, you slayed the goblin hoard"
+    return message;
+  }
+
   public startGame() {
     document.body.appendChild(this.gameBoardElement);
     this.populateBoardWithGoblins(this.goblins);
@@ -271,7 +285,9 @@ class Game {
   }
 
   public stopGame() {
-    //TO BE FILLED
+    //Close all intervals
+    //Clear the game board
+    //Display message to the page based on a win or loss
   }
 }
 
