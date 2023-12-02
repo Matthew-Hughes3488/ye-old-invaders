@@ -15,6 +15,8 @@ const goblins : Goblin[] = [
     new Goblin(5, 2)
 ]
 
+const wizard = new Wizard()
+
 const gameBoard = document.querySelector(".game-board");
 if (!gameBoard) throw new Error("Query error");
 
@@ -37,7 +39,7 @@ const populateBoardWithGoblins = (goblins: Goblin[]) => {
  * @returns {void}
  */
 const addWizardToBoard = () => {
-  gameBoard.innerHTML += `<img class="game-board__player-character" src="./src/images/wizard.png" alt="">`;
+  gameBoard.appendChild(wizard.getWizardHTML())
 };
 
 populateBoardWithGoblins(goblins);
