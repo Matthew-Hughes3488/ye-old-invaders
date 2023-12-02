@@ -46,7 +46,6 @@ const addWizardToBoard = () => {
  * Takes an array of goblins and check to see if any have reached the
  * end of the game board
  *
- *
  * @param {Goblin[]} goblins - array of goblins
  * @returns {boolean} - true if any goblin has reached the end of the board, otherwise false
  */
@@ -69,7 +68,6 @@ const haveReachedEndOfBoard = (goblins: Goblin[]): boolean => {
  * Updates the goblins postion on the grid.
  * Updates the horizontal direction the goblins are moving in
  *
- *
  * @param {Goblin[]} goblins - array of goblins
  * @returns {void}
  */
@@ -83,6 +81,13 @@ const moveGoblinsDown = (goblins: Goblin[]) => {
   else Goblin.movementDirection = "right";
 };
 
+/**
+ * Takes an array of goblins, updates the x coordinate for each one
+ * Depending on if they are currently moving left or right
+ *
+ * @param {Goblin[]} goblins - array of goblins
+ * @returns {void}
+ */
 const moveGoblinsHorizontailly = (goblins: Goblin[]) => {
   if (Goblin.movementDirection === "right") {
     goblins.forEach((goblin) => {
