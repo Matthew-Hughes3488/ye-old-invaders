@@ -6,6 +6,9 @@ class Game {
   private goblins: Goblin[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
+  private goblinMovementIntervalId?: number  = undefined;
+  private fireballUpdateIntervalId?: number  = undefined;
+  private collisionCheckerIntervalId?: number  = undefined;
 
   constructor() {
     this.goblins = [
@@ -149,6 +152,7 @@ class Game {
 
   private removeFireball(fireBall: Projectile) {
     this.gameBoardElement.removeChild(fireBall.element);
+    this.clearFireBallAndCollisionIntervals()
   }
 
   private updateFireBallPosition(fireBall: Projectile) {
@@ -157,17 +161,58 @@ class Game {
   }
 
   private manageFireball() {
-    const fireBall = this.createFireball();
+    if (this.fireballUpdateIntervalId === undefined) {
+      const fireBall = this.createFireball();
 
-    setInterval(() => {
-      this.updateFireBallPosition(fireBall);
-    }, 500);
+      this.fireballUpdateIntervalId = setInterval(() => {
+        this.updateFireBallPosition(fireBall);
+      }, 500);
+      this.collisionCheckerIntervalId = setInterval(() => {
+        this.collisionChecker(fireBall);
+      }, 500);
+    }
+  }
+
+  private clearFireBallAndCollisionIntervals() {
+    if (this.fireballUpdateIntervalId !== undefined) {
+        clearInterval(this.fireballUpdateIntervalId)
+      this.fireballUpdateIntervalId = undefined;
+    }
+    if (this.collisionCheckerIntervalId !== undefined) {
+        clearInterval(this.collisionCheckerIntervalId)
+      this.collisionCheckerIntervalId = undefined;
+    }
+  }
+
+  private destroyGoblin(destroyedGoblin: Goblin) {
+    //removed goblin element from the screen
+    this.gameBoardElement.removeChild(destroyedGoblin.element);
+    //remove goblin from goblins array
+    this.goblins = this.goblins.filter((goblin) => {
+      return !(goblin.goblinID === destroyedGoblin.goblinID);
+    });
+  }
+
+  private collisionChecker(fireBall: Projectile) {
+    const fireBallXCoordinate = fireBall.getXCordinate();
+    const fireBallYCoordinate = fireBall.getYCordinate();
+
+    this.goblins.forEach((goblin) => {
+      if (
+        goblin.getXCordinate() == fireBallXCoordinate &&
+        goblin.getYCordinate() == fireBallYCoordinate
+      ) {
+        this.destroyGoblin(goblin);
+        this.removeFireball(fireBall);
+        this.clearFireBallAndCollisionIntervals();
+      }
+    });
   }
 
   private goblinMovementInterval() {
-    setInterval(() => {
+    this.goblinMovementIntervalId = setInterval(() => {
       this.updateGoblinPosition();
-    }, 5000);
+    }, 3000);
   }
 
   private gameEventListeners() {

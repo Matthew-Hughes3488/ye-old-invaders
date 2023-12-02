@@ -2,12 +2,14 @@ class Goblin {
   private static numOfGoblins = 1;
   private xCordinate: number;
   private yCordinate: number;
+  public goblinID: number
   public element: HTMLImageElement;
   public static movementDirection: string = "right";
 
   constructor(xValue: number, yValue: number) {
     this.xCordinate = xValue;
     this.yCordinate = yValue;
+    this.goblinID = Goblin.numOfGoblins;
     this.element = this.getHTML();
   }
 
