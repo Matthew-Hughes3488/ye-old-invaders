@@ -162,6 +162,10 @@ class Game {
     setInterval(() => {
       this.updateFireBallPosition(fireBall);
     }, 500);
+
+    setInterval(() => {
+        this.collisionChecker(fireBall)
+      }, 500);
   }
 
   private destroyGoblin(destroyedGoblin : Goblin) {
@@ -171,7 +175,6 @@ class Game {
     this.goblins = this.goblins.filter(goblin => {
         return !(goblin.goblinID === destroyedGoblin.goblinID)
     });
-    
   }
 
   private collisionChecker(fireBall: Projectile) {
@@ -183,7 +186,7 @@ class Game {
         goblin.getXCordinate() == fireBallXCoordinate &&
         goblin.getYCordinate() == fireBallYCoordinate
       ) {
-        //DESTROY GOBLIN
+        this.destroyGoblin(goblin);
       }
     });
   }
