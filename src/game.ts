@@ -268,6 +268,19 @@ class Game {
       this.gameOverChecker();
     }, 1000);
   }
+  private youWinHTML(): HTMLHeadElement {
+    const message = document.createElement("h1");
+    message.classList.add("game-board__you-win-message");
+    message.textContent = "Well Done, you slayed the goblin hoard";
+    return message;
+  }
+
+  private youLoseHTML(): HTMLHeadElement {
+    const message = document.createElement("h1");
+    message.classList.add("game-board__you-lose-message");
+    message.textContent = "You failed, the city... is lost";
+    return message;
+  }
 }
 
 export default Game;
