@@ -156,7 +156,10 @@ class Game {
   }
 
   private updateFireBallPosition(fireBall: Projectile) {
-    if (fireBall.getYCordinate() === 1) this.removeFireball(fireBall);
+    if (fireBall.getYCordinate() === 1) {
+        this.removeFireball(fireBall);
+        this.clearFireBallAndCollisionIntervals();
+    }
     else fireBall.moveUp();
   }
 
@@ -280,6 +283,25 @@ class Game {
     message.classList.add("game-board__you-lose-message");
     message.textContent = "You failed, the city... is lost";
     return message;
+  }
+
+  private clearAllIntervals() {
+    if (this.fireballUpdateIntervalId !== undefined) {
+      clearInterval(this.fireballUpdateIntervalId);
+      this.fireballUpdateIntervalId = undefined;
+    }
+    if (this.goblinMovementIntervalId !== undefined) {
+      clearInterval(this.goblinMovementIntervalId);
+      this.goblinMovementIntervalId = undefined;
+    }
+    if (this.collisionCheckerIntervalId !== undefined) {
+      clearInterval(this.collisionCheckerIntervalId);
+      this.collisionCheckerIntervalId = undefined;
+    }
+    if (this.gameOverIntervalId !== undefined) {
+      clearInterval(this.gameOverIntervalId);
+      this.gameOverIntervalId = undefined;
+    }
   }
 }
 
