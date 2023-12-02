@@ -249,9 +249,9 @@ class Game {
 
   private gameOverChecker() {
     if (this.allGoblinsDead()) {
-      console.log("You win");
+      this.stopGame(true);
     } else if (this.goblinsDestroyedWizard()) {
-      console.log("You die");
+      this.stopGame(false);
     }
   }
 
@@ -288,6 +288,10 @@ class Game {
     }
   }
 
+  private clearGameBoard() {
+    this.gameBoardElement.innerHTML = "";
+  }
+
   public startGame() {
     document.body.appendChild(this.gameBoardElement);
     this.populateBoardWithGoblins(this.goblins);
@@ -297,10 +301,12 @@ class Game {
     this.gameOverInterval();
   }
 
-  public stopGame() {
-    //Close all intervals
-    //Clear the game board
-    //Display message to the page based on a win or loss
+  public stopGame(didWin:boolean) {
+    this.clearAllIntervals();
+    this.clearGameBoard();
+
+    if (didWin) this.gameBoardElement.appendChild(this.youWinHTML());
+    else this.gameBoardElement.appendChild(this.youLoseHTML());
   }
 }
 
