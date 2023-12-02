@@ -123,6 +123,32 @@ const updateGoblinPosition = (goblins: Goblin[]) => {
 populateBoardWithGoblins(goblins);
 addWizardToBoard();
 
- setInterval(() => {
-   updateGoblinPosition(goblins);
- }, 5000);
+setInterval(() => {
+  updateGoblinPosition(goblins);
+}, 5000);
+
+const handleLeftWizardMovement = () => {
+  if(wizard.getXCordinate() != 1){
+    wizard.moveLeft();
+    wizard.updateWizardCordinates();
+  }
+};
+
+const handleRightWizardMovement = () => {
+  if(wizard.getXCordinate() != 8){
+    wizard.moveRight();
+    wizard.updateWizardCordinates();
+  }
+};
+
+// Event lister for when the player wanst to move the wizard character
+document.addEventListener("keydown", (event) => {
+  if (event.code === "ArrowLeft") {
+    console.log("Left arrow key pressed");
+    handleLeftWizardMovement();
+  } else if (event.code == "ArrowRight") {
+    console.log("right arrow pressed");
+    // function that deals with right wizard movement
+    handleRightWizardMovement();
+  }
+});
