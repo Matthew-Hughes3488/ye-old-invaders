@@ -29,7 +29,7 @@ if (!gameBoard) throw new Error("Query error");
  */
 const populateBoardWithGoblins = (goblins: Goblin[]) => {
   goblins.forEach((goblin) => {
-    gameBoard.appendChild(goblin.goblinElement);
+    gameBoard.appendChild(goblin.element);
   });
 };
 
@@ -40,7 +40,7 @@ const populateBoardWithGoblins = (goblins: Goblin[]) => {
  * @returns {void}
  */
 const addWizardToBoard = () => {
-  gameBoard.appendChild(wizard.wizardElement);
+  gameBoard.appendChild(wizard.element);
 };
 
 /**
@@ -141,12 +141,12 @@ const createFireball = (): Projectile => {
   const xValue = wizard.getXCordinate();
   const yValue = wizard.getYCordinate() - 1;
   const fireBall = new Projectile(xValue, yValue);
-  gameBoard.appendChild(fireBall.projectileElement);
+  gameBoard.appendChild(fireBall.element);
   return fireBall;
 };
 
 const removeFireball = (fireBall : Projectile) =>{
-  gameBoard.removeChild(fireBall.projectileElement)
+  gameBoard.removeChild(fireBall.element)
 }
 
 const updateFireBallPosition = (fireBall: Projectile) => {
