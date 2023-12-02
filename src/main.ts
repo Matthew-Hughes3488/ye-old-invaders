@@ -43,6 +43,18 @@ const addWizardToBoard = () => {
 };
 
 /**
+ * Takes an array of goblins and check to see if any have reached the
+ * end of the game board
+ * 
+ *
+ * @param {Goblin[]} goblins - array of goblins
+ * @returns {boolean} - true if any goblin has reached the end of the board, otherwise false
+ */
+const haveReachedEndOfBoard = (goblins : Goblin[]) : boolean =>{
+  return false;
+}
+
+/**
  * moves the goblins across and down the game grid
  * If they have reached the end of the board they move down
  * if they havent they will move left or right
