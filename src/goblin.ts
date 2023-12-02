@@ -6,4 +6,10 @@ class Goblin{
         this.xCordinate = xValue;
         this.yCordinate = yValue;
     }
+
+    public getGoblinHTML (){
+        return `<img class="game-board__goblin" src="./images/goblin.png" alt="">`;
+      };
 }
+
+export default Goblin;

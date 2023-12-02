@@ -1,4 +1,19 @@
 import "./main.scss";
+import Goblin from "./goblin";
+import Wizard from "./wizard";
+
+const goblins : Goblin[] = [
+    new Goblin(1, 1),
+    new Goblin(1, 2),
+    new Goblin(1, 3),
+    new Goblin(1, 4),
+    new Goblin(1, 5),
+    new Goblin(2, 1),
+    new Goblin(2, 2),
+    new Goblin(2, 3),
+    new Goblin(2, 4),
+    new Goblin(2, 5)
+]
 
 /* Generate goblins feature
     function to get goblin HTML

@@ -7,3 +7,5 @@ class Wizard{
         this.yCordinate = yValue;
     }
 }
+
+export default Wizard;
