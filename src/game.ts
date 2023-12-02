@@ -159,11 +159,11 @@ class Game {
   private manageFireball() {
     const fireBall = this.createFireball();
 
-    setInterval(() => {
+    const fireBallInterval = setInterval(() => {
       this.updateFireBallPosition(fireBall);
     }, 500);
 
-    setInterval(() => {
+    const collisionCheckerInterval = setInterval(() => {
         this.collisionChecker(fireBall)
       }, 500);
   }
@@ -187,6 +187,7 @@ class Game {
         goblin.getYCordinate() == fireBallYCoordinate
       ) {
         this.destroyGoblin(goblin);
+        this.removeFireball(fireBall);
       }
     });
   }
