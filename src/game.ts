@@ -6,9 +6,9 @@ class Game {
   private goblins: Goblin[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
-  private goblinMovementIntervalId?: number  = undefined;
-  private fireballUpdateIntervalId?: number  = undefined;
-  private collisionCheckerIntervalId?: number  = undefined;
+  private goblinMovementIntervalId?: number = undefined;
+  private fireballUpdateIntervalId?: number = undefined;
+  private collisionCheckerIntervalId?: number = undefined;
 
   constructor() {
     this.goblins = [
@@ -174,11 +174,11 @@ class Game {
 
   private clearFireBallAndCollisionIntervals() {
     if (this.fireballUpdateIntervalId !== undefined) {
-        clearInterval(this.fireballUpdateIntervalId)
+      clearInterval(this.fireballUpdateIntervalId);
       this.fireballUpdateIntervalId = undefined;
     }
     if (this.collisionCheckerIntervalId !== undefined) {
-        clearInterval(this.collisionCheckerIntervalId)
+      clearInterval(this.collisionCheckerIntervalId);
       this.collisionCheckerIntervalId = undefined;
     }
   }
@@ -237,6 +237,20 @@ class Game {
   private allGoblinsDead(): boolean {
     if (this.goblins.length === 0) return true;
     else return false;
+  }
+
+  private goblinsDestroyedWizard(): boolean {
+    let result = false;
+
+    for (let i = 0; i < this.goblins.length; i++) {
+      const goblin = this.goblins[i];
+      if (goblin.getYCordinate() === 8) {
+        result = true;
+        break;
+      }
+    }
+
+    return result;
   }
 }
 
