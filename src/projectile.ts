@@ -1,19 +1,19 @@
 class Projectile {
   private xCordinate: number;
   private yCordinate: number;
-  public projectileElement: HTMLImageElement;
+  public element: HTMLImageElement;
 
   constructor(xValue: number, yValue: number) {
     this.xCordinate = xValue;
     this.yCordinate = yValue;
-    this.projectileElement = this.getProjectileHTML();
+    this.element = this.getHTML();
   }
 
   public getYCordinate(): number {
     return this.yCordinate;
   }
 
-  private getProjectileHTML() {
+  private getHTML() {
     const projectileElement = document.createElement("img");
     projectileElement.src = "./src/images/fireball.png";
     projectileElement.classList.add("game-board__fireball");
@@ -23,14 +23,14 @@ class Projectile {
     return projectileElement;
   }
 
-  public updateProjectileCordinates() {
-    this.projectileElement.style.gridColumn = `${this.xCordinate} / span 1`;
-    this.projectileElement.style.gridRow = `${this.yCordinate} / span 1`;
+  public updateCordinates() {
+    this.element.style.gridColumn = `${this.xCordinate} / span 1`;
+    this.element.style.gridRow = `${this.yCordinate} / span 1`;
   }
 
   public moveUp() {
     this.yCordinate--;
-    this.updateProjectileCordinates();
+    this.updateCordinates();
   }
 }
 
