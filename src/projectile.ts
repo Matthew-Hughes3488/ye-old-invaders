@@ -13,6 +13,10 @@ class Projectile {
     return this.yCordinate;
   }
 
+  public getXCordinate(): number {
+    return this.xCordinate;
+  }
+
   private getHTML() {
     const projectileElement = document.createElement("img");
     projectileElement.src = "./src/images/fireball.png";

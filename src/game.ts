@@ -164,6 +164,22 @@ class Game {
     }, 500);
   }
 
+  
+
+  private collisionChecker(fireBall: Projectile) {
+    const fireBallXCoordinate = fireBall.getXCordinate();
+    const fireBallYCoordinate = fireBall.getYCordinate();
+
+    this.goblins.forEach((goblin) => {
+      if (
+        goblin.getXCordinate() == fireBallXCoordinate &&
+        goblin.getYCordinate() == fireBallYCoordinate
+      ) {
+        //DESTROY GOBLIN
+      }
+    });
+  }
+
   private goblinMovementInterval() {
     setInterval(() => {
       this.updateGoblinPosition();
