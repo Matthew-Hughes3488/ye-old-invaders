@@ -126,3 +126,24 @@ addWizardToBoard();
  setInterval(() => {
    updateGoblinPosition(goblins);
  }, 5000);
+
+
+ const handleLeftWizardMovement = () =>{
+
+ }
+
+ const handleRightWizardMovement = () =>{
+
+ }
+
+// Event lister for when the player wanst to move the wizard character
+ document.addEventListener("keydown", (event) => {
+  if (event.code === "ArrowLeft") {
+    console.log("Left arrow key pressed");
+    // Function that deals with left wizard movement
+  }
+  else if (event.code == "ArrowRight"){
+    console.log("right arrow pressed");
+    // function that deals with right wizard movement
+  }
+});
