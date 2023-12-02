@@ -19,7 +19,7 @@ class Goblin {
     return this.yCordinate;
   }
 
-  public getGoblinHTML() {
+  private getGoblinHTML() {
     const goblinElement = document.createElement("img");
     goblinElement.src = "./src/images/goblin.png";
     goblinElement.classList.add("game-board__goblin");

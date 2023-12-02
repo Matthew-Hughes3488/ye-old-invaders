@@ -1,6 +1,7 @@
 import "./main.scss";
 import Goblin from "./goblin";
 import Wizard from "./wizard";
+import Projectile from "./projectile";
 
 const goblins: Goblin[] = [
   new Goblin(1, 1),
@@ -74,7 +75,6 @@ const haveReachedEndOfBoard = (goblins: Goblin[]): boolean => {
 const moveGoblinsDown = (goblins: Goblin[]) => {
   goblins.forEach((goblin) => {
     goblin.moveDown();
-    goblin.updateGoblinCordinates();
   });
 
   if (Goblin.movementDirection === "right") Goblin.movementDirection = "left";
@@ -92,12 +92,10 @@ const moveGoblinsHorizontailly = (goblins: Goblin[]) => {
   if (Goblin.movementDirection === "right") {
     goblins.forEach((goblin) => {
       goblin.moveRight();
-      goblin.updateGoblinCordinates();
     });
   } else {
     goblins.forEach((goblin) => {
       goblin.moveLeft();
-      goblin.updateGoblinCordinates();
     });
   }
 };
@@ -128,27 +126,52 @@ setInterval(() => {
 }, 5000);
 
 const handleLeftWizardMovement = () => {
-  if(wizard.getXCordinate() != 1){
+  if (wizard.getXCordinate() != 1) {
     wizard.moveLeft();
-    wizard.updateWizardCordinates();
   }
 };
 
 const handleRightWizardMovement = () => {
-  if(wizard.getXCordinate() != 8){
+  if (wizard.getXCordinate() != 8) {
     wizard.moveRight();
-    wizard.updateWizardCordinates();
   }
+};
+
+const createFireball = (): Projectile => {
+  const xValue = wizard.getXCordinate();
+  const yValue = wizard.getYCordinate() - 1;
+  const fireBall = new Projectile(xValue, yValue);
+  gameBoard.appendChild(fireBall.projectileElement);
+  return fireBall;
+};
+
+const removeFireball = (fireBall : Projectile) =>{
+  gameBoard.removeChild(fireBall.projectileElement)
+}
+
+const updateFireBallPosition = (fireBall: Projectile) => {
+  if(fireBall.getYCordinate() === 1)
+    removeFireball(fireBall);
+  fireBall.moveUp();
+};
+
+const manageFireball = () => {
+  const fireBall = createFireball();
+
+  setInterval(() => {
+    updateFireBallPosition(fireBall);
+  }, 500);
 };
 
 // Event lister for when the player wanst to move the wizard character
 document.addEventListener("keydown", (event) => {
   if (event.code === "ArrowLeft") {
-    console.log("Left arrow key pressed");
     handleLeftWizardMovement();
-  } else if (event.code == "ArrowRight") {
-    console.log("right arrow pressed");
-    // function that deals with right wizard movement
+  } else if (event.code === "ArrowRight") {
     handleRightWizardMovement();
+  } else if (event.code === "Space") {
+    console.log("space bar was pressed");
+    //Function to create and move the projectile
+    manageFireball();
   }
 });

@@ -15,7 +15,7 @@ class Wizard {
     return this.yCordinate;
   }
 
-  public getWizardHTML() {
+  private getWizardHTML() {
     const wizardElement = document.createElement("img");
     wizardElement.src = "./src/images/wizard.png";
     wizardElement.classList.add("game-board__player-character");
