@@ -164,10 +164,10 @@ class Game {
     }, 500);
   }
 
-  private goblinMovementInterval (){
+  private goblinMovementInterval() {
     setInterval(() => {
-        this.updateGoblinPosition();
-      }, 5000);
+      this.updateGoblinPosition();
+    }, 5000);
   }
 
   private gameEventListeners() {
@@ -181,4 +181,14 @@ class Game {
       }
     });
   }
+
+  public startGame() {
+    document.body.appendChild(this.gameBoardElement);
+    this.populateBoardWithGoblins(this.goblins);
+    this.addWizardToBoard();
+    this.gameEventListeners();
+    this.goblinMovementInterval();
+  }
 }
+
+export default Game;
