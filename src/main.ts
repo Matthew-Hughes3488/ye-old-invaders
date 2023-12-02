@@ -51,19 +51,23 @@ const addWizardToBoard = () => {
  * @returns {boolean} - true if any goblin has reached the end of the board, otherwise false
  */
 const haveReachedEndOfBoard = (goblins: Goblin[]): boolean => {
+  let result = false;
+
   goblins.forEach((goblin) => {
-    if (goblin.getXCordinate() === 1 || goblin.getXCordinate() === 9) {
-      return true;
+    if (
+      (goblin.getXCordinate() === 1 && Goblin.movementDirection === "left") ||
+      (goblin.getXCordinate() === 8 && Goblin.movementDirection === "right")
+    ) {
+      result = true;
     }
   });
-
-  return false;
+  return result;
 };
 
 /**
  * Takes an array of goblins, updates the ycoordinate for each one
- * Updates the goblins postion on the grid
- *
+ * Updates the goblins postion on the grid.
+ * Updates the horizontal direction the goblins are moving in
  *
  *
  * @param {Goblin[]} goblins - array of goblins
@@ -74,6 +78,9 @@ const moveGoblinsDown = (goblins: Goblin[]) => {
     goblin.moveDown();
     goblin.updateGoblinCordinates();
   });
+
+  if (Goblin.movementDirection === "right") Goblin.movementDirection = "left";
+  else Goblin.movementDirection = "right";
 };
 
 const moveGoblinsHorizontailly = (goblins: Goblin[]) => {
@@ -99,6 +106,8 @@ const moveGoblinsHorizontailly = (goblins: Goblin[]) => {
  * @returns {void}
  */
 const updateGoblinPosition = (goblins: Goblin[]) => {
+  console.log(haveReachedEndOfBoard(goblins));
+
   if (haveReachedEndOfBoard(goblins)) {
     moveGoblinsDown(goblins);
   } else {
@@ -108,3 +117,7 @@ const updateGoblinPosition = (goblins: Goblin[]) => {
 
 populateBoardWithGoblins(goblins);
 addWizardToBoard();
+
+ setInterval(() => {
+   updateGoblinPosition(goblins);
+ }, 5000);
