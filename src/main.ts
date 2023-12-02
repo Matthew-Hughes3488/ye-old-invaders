@@ -27,7 +27,7 @@ const gameBoard = document.querySelector(".game-board");
 if (!gameBoard) throw new Error("Query error");
 
 const getGoblinHTML = (goblinIdNumber: number) => {
-  return `<img class="game-board__goblin game-board--goblin-${goblinIdNumber}" src="./images/goblin.png" alt="">`;
+  return `<img class="game-board__goblin game-board--goblin-${goblinIdNumber}" src="./src/images/goblin.png" alt="">`;
 };
 
 const populateBoardWithGoblins = (numberOfGoblins: number) => {
@@ -37,7 +37,7 @@ const populateBoardWithGoblins = (numberOfGoblins: number) => {
 };
 
 const addWizardToBoard = () => {
-  gameBoard.innerHTML += `<img class="game-board__player-character" src="./images/wizard.png" alt="">`;
+  gameBoard.innerHTML += `<img class="game-board__player-character" src="./src/images/wizard.png" alt="">`;
 };
 
 populateBoardWithGoblins(10);
