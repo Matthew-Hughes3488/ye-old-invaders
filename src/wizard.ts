@@ -1,10 +1,14 @@
 class Wizard{
-    private xCordinate : number
-    private yCordinate : number
+    private xCordinate : number = 4
+    private yCordinate : number = 8
 
-    constructor(xValue : number, yValue : number) {
-        this.xCordinate = xValue;
-        this.yCordinate = yValue;
+    public getWizardHTML(){
+        const wizardElement = document.createElement("img");
+        wizardElement.src = "./src/images/goblin.png"
+        wizardElement.classList.add("game-board__wizard");
+        wizardElement.style.gridColumn = `${this.xCordinate} / span 1`;
+        wizardElement.style.gridRow = `${this.yCordinate} / span 1`;
+        return wizardElement;
     }
 }
 

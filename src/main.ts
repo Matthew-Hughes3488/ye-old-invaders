@@ -15,23 +15,27 @@ const goblins : Goblin[] = [
     new Goblin(5, 2)
 ]
 
-/* Generate goblins feature
-    function to get goblin HTML
-    DOM to get game board
-    function to populate the board with x goblins
-    will update in the future to create goblin objects
-    and place them on the board based on the x and y attributes 
-    */
-
 const gameBoard = document.querySelector(".game-board");
 if (!gameBoard) throw new Error("Query error");
 
+/**
+ * Populates the game board with goblin elements.
+ *
+ * @param {Goblin[]} goblins - An array of Goblin instances.
+ * @returns {void}
+ */
 const populateBoardWithGoblins = (goblins: Goblin[]) => {
   goblins.forEach(goblin =>{
     gameBoard.appendChild(goblin.getGoblinHTML())
   })
 };
 
+/**
+ * Populates the game board with a wizard element.
+ *
+ * @param {Wizard} wizard - A wizard object.
+ * @returns {void}
+ */
 const addWizardToBoard = () => {
   gameBoard.innerHTML += `<img class="game-board__player-character" src="./src/images/wizard.png" alt="">`;
 };
