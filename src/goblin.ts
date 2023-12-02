@@ -8,18 +8,14 @@ class Goblin{
         this.yCordinate = yValue;
     }
 
-    public getGoblinHTML(goblin : Goblin){
+    public getGoblinHTML(){
         const goblinElement = document.createElement("img");
         goblinElement.src = "./src/images/goblin.png"
         goblinElement.classList.add("game-board__goblin");
         goblinElement.classList.add(`game-board--goblin-${Goblin.numOfGoblins++}`);
-        goblinElement.style.gridColumn = `${goblin.xCordinate} / span 1`;
-        goblinElement.style.gridRow = `${goblin.yCordinate} / span 1`;
+        goblinElement.style.gridColumn = `${this.xCordinate} / span 1`;
+        goblinElement.style.gridRow = `${this.yCordinate} / span 1`;
         return goblinElement;
-
-        //`<img 
-        //class="game-board__goblin game-board--goblin-${goblinIdNumber}" 
-        //src="./src/images/goblin.png" alt="">`
     }
 }
 
