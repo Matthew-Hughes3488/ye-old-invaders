@@ -10,6 +10,14 @@ class Wizard{
         wizardElement.style.gridRow = `${this.yCordinate} / span 1`;
         return wizardElement;
     }
+
+    public moveRight(){
+        this.xCordinate++;
+    }
+
+    public moveLeft(){
+        this.xCordinate--;
+    }
 }
 
 export default Wizard;

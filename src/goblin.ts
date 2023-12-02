@@ -17,6 +17,18 @@ class Goblin{
         goblinElement.style.gridRow = `${this.yCordinate} / span 1`;
         return goblinElement;
     }
+
+    public moveDown(){
+        this.yCordinate++;
+    }
+
+    public moveRight(){
+        this.xCordinate++;
+    }
+
+    public moveLeft(){
+        this.xCordinate--;
+    }
 }
 
 export default Goblin;
