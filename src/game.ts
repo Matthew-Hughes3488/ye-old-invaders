@@ -6,9 +6,10 @@ class Game {
   private goblins: Goblin[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
-  private goblinMovementIntervalId?: number  = undefined;
-  private fireballUpdateIntervalId?: number  = undefined;
-  private collisionCheckerIntervalId?: number  = undefined;
+  private goblinMovementIntervalId?: number = undefined;
+  private fireballUpdateIntervalId?: number = undefined;
+  private collisionCheckerIntervalId?: number = undefined;
+  private gameOverIntervalId?: number = undefined;
 
   constructor() {
     this.goblins = [
@@ -152,12 +153,13 @@ class Game {
 
   private removeFireball(fireBall: Projectile) {
     this.gameBoardElement.removeChild(fireBall.element);
-    this.clearFireBallAndCollisionIntervals()
   }
 
   private updateFireBallPosition(fireBall: Projectile) {
-    if (fireBall.getYCordinate() === 1) this.removeFireball(fireBall);
-    else fireBall.moveUp();
+    if (fireBall.getYCordinate() === 1) {
+      this.removeFireball(fireBall);
+      this.clearFireBallAndCollisionIntervals();
+    } else fireBall.moveUp();
   }
 
   private manageFireball() {
@@ -175,11 +177,11 @@ class Game {
 
   private clearFireBallAndCollisionIntervals() {
     if (this.fireballUpdateIntervalId !== undefined) {
-        clearInterval(this.fireballUpdateIntervalId)
+      clearInterval(this.fireballUpdateIntervalId);
       this.fireballUpdateIntervalId = undefined;
     }
     if (this.collisionCheckerIntervalId !== undefined) {
-        clearInterval(this.collisionCheckerIntervalId)
+      clearInterval(this.collisionCheckerIntervalId);
       this.collisionCheckerIntervalId = undefined;
     }
   }
@@ -212,7 +214,7 @@ class Game {
   private goblinMovementInterval() {
     this.goblinMovementIntervalId = setInterval(() => {
       this.updateGoblinPosition();
-    }, 3000);
+    }, 1000);
   }
 
   private gameEventListeners() {
@@ -227,12 +229,90 @@ class Game {
     });
   }
 
+  private allGoblinsDead(): boolean {
+    if (this.goblins.length === 0) return true;
+    else return false;
+  }
+
+  private goblinsDestroyedWizard(): boolean {
+    let result = false;
+
+    for (let i = 0; i < this.goblins.length; i++) {
+      const goblin = this.goblins[i];
+      if (goblin.getYCordinate() === 8) {
+        result = true;
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  private gameOverChecker() {
+    if (this.allGoblinsDead()) {
+      this.stopGame(true);
+    } else if (this.goblinsDestroyedWizard()) {
+      this.stopGame(false);
+    }
+  }
+
+  private gameOverInterval() {
+    this.gameOverIntervalId = setInterval(() => {
+      this.gameOverChecker();
+    }, 1000);
+  }
+  private youWinHTML(): HTMLHeadElement {
+    const message = document.createElement("h1");
+    message.classList.add("game-board__you-win-message");
+    message.textContent = "Well Done, you slayed the goblin hoard";
+    return message;
+  }
+
+  private youLoseHTML(): HTMLHeadElement {
+    const message = document.createElement("h1");
+    message.classList.add("game-board__you-lose-message");
+    message.textContent = "You failed, the city... is lost";
+    return message;
+  }
+
+  private clearAllIntervals() {
+    if (this.fireballUpdateIntervalId !== undefined) {
+      clearInterval(this.fireballUpdateIntervalId);
+      this.fireballUpdateIntervalId = undefined;
+    }
+    if (this.goblinMovementIntervalId !== undefined) {
+      clearInterval(this.goblinMovementIntervalId);
+      this.goblinMovementIntervalId = undefined;
+    }
+    if (this.collisionCheckerIntervalId !== undefined) {
+      clearInterval(this.collisionCheckerIntervalId);
+      this.collisionCheckerIntervalId = undefined;
+    }
+    if (this.gameOverIntervalId !== undefined) {
+      clearInterval(this.gameOverIntervalId);
+      this.gameOverIntervalId = undefined;
+    }
+  }
+
+  private clearGameBoard() {
+    this.gameBoardElement.innerHTML = "";
+  }
+
   public startGame() {
     document.body.appendChild(this.gameBoardElement);
     this.populateBoardWithGoblins(this.goblins);
     this.addWizardToBoard();
     this.gameEventListeners();
     this.goblinMovementInterval();
+    this.gameOverInterval();
+  }
+
+  public stopGame(didWin: boolean) {
+    this.clearAllIntervals();
+    this.clearGameBoard();
+
+    if (didWin) this.gameBoardElement.appendChild(this.youWinHTML());
+    else this.gameBoardElement.appendChild(this.youLoseHTML());
   }
 }
 
