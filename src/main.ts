@@ -42,5 +42,25 @@ const addWizardToBoard = () => {
   gameBoard.appendChild(wizard.wizardElement)
 };
 
+/**
+ * moves the goblins across and down the game grid
+ * If they have reached the end of the board they move down
+ * if they havent they will move left or right
+ *
+ * @param {Goblin[]} goblins - array of goblins
+ * @returns {void}
+ */
+const updateGoblinPosition = (goblins : Goblin[]) =>{
+  //Check if the end of the board is reached, if not move left or right
+  //if they have, move down and change wether they move left or right for this collumn
+
+  //if(haveReachedEndOfBoard) {
+    //move all goblins down
+    //change movement direction
+  //}
+  //else: if(moving right) move right, else move left
+}
+
+
 populateBoardWithGoblins(goblins);
 addWizardToBoard();

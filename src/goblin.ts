@@ -3,6 +3,7 @@ class Goblin{
     private xCordinate : number
     private yCordinate : number
     public goblinElement : HTMLImageElement
+    public movementDirection: string = "right";
 
     constructor(xValue : number, yValue : number) {
         this.xCordinate = xValue;
