@@ -252,6 +252,14 @@ class Game {
 
     return result;
   }
+
+  private gameOverChecker() {
+    if (this.allGoblinsDead()) {
+      //to be implemented
+    } else if (this.goblinsDestroyedWizard()) {
+      //to be implemented
+    }
+  }
 }
 
 export default Game;
