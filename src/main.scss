@@ -1,13 +1,51 @@
+@use "./variables" as *;
 @use "./gameboard";
 
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    font-family: $font-main;
 }
 
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: $color-brown;
+}
+
+.title{
+    margin: 5px;
+    margin-top: 10px;
+    color: $color-tan;
+    font-size: 1.2rem;
+}
+
+.start-button{
+    margin: 10px;
+    color: $color-tan;
+    background-color: $color-brown;
+    border: 2px solid $color-light-brown;
+    padding: 5px;
+}
+
+@media screen and (min-width:768px){
+    .title{
+        font-size: 3rem;
+    }
+    .start-button{
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+@media screen and (min-width:1200px){
+    .title{
+        font-size: 4rem;
+    }
+    .start-button{
+        font-size: 1.5rem;
+        padding: 15px;
+    }
 }

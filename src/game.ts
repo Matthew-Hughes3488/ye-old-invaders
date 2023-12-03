@@ -263,14 +263,14 @@ class Game {
   }
   private youWinHTML(): HTMLHeadElement {
     const message = document.createElement("h1");
-    message.classList.add("game-board__you-win-message");
+    message.classList.add("game-board__game-over-message");
     message.textContent = "Well Done, you slayed the goblin hoard";
     return message;
   }
 
   private youLoseHTML(): HTMLHeadElement {
     const message = document.createElement("h1");
-    message.classList.add("game-board__you-lose-message");
+    message.classList.add("game-board__game-over-message");
     message.textContent = "You failed, the city... is lost";
     return message;
   }
