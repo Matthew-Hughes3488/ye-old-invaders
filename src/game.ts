@@ -331,17 +331,13 @@ class Game {
   }
 
   private startAudio(audioName: string, intervalNumber: number = 0) {
-
     for (let i = 0; i < this.gameAudioFiles.length; i++) {
       const audioFile = this.gameAudioFiles[i];
       if (audioFile.name === audioName) {
-        if (intervalNumber === 0) {
-          audioFile.audio.playAudio();
-          break;
-        } else {
+        audioFile.audio.playAudio();
+        if (intervalNumber !== 0)
           audioFile.audio.startAudioInterval(intervalNumber);
-          break;
-        }
+        break;
       }
     }
   }
@@ -358,6 +354,7 @@ class Game {
 
   public startGame() {
     document.body.appendChild(this.gameBoardElement);
+    this.startAudio("battle theme", 161000);
     this.populateBoardWithGoblins(this.goblins);
     this.addWizardToBoard();
     this.gameEventListeners();

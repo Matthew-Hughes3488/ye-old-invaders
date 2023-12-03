@@ -32,7 +32,7 @@ class GameAudio {
   }
 
   public startAudioInterval(intervalNumber: number) {
-    if (this.audioIntervalId !== undefined) {
+    if (this.audioIntervalId === undefined) {
       this.audioIntervalId = setInterval(() => {
         this.playAudio();
       }, intervalNumber);
