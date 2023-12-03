@@ -19,5 +19,11 @@ body{
     margin: 5px;
     margin-top: 10px;
     color: $color-tan;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+}
+
+@media screen and (min-width:768px){
+    .title{
+        font-size: 3rem;
+    }
 }
