@@ -1,9 +1,12 @@
 import Goblin from "./goblin";
 import Wizard from "./wizard";
 import Projectile from "./projectile";
+import GameAudio from "./audio";
+import gameAudioType from "./gameAudioType";
 
 class Game {
   private goblins: Goblin[];
+  private gameAudioFiles: gameAudioType[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
   private goblinMovementIntervalId?: number = undefined;
@@ -24,8 +27,35 @@ class Game {
       new Goblin(4, 2),
       new Goblin(5, 2),
     ];
-    this.wizard = new Wizard();
 
+    this.gameAudioFiles = [
+      {
+        name: "battle theme",
+        audio: new GameAudio("./src/audio/Battle-music.mp3"),
+      },
+      {
+        name: "fireball whoosh",
+        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3"),
+      },
+      {
+        name: "fireball impact",
+        audio: new GameAudio("./src/audio/Fireball-impact.mp3"),
+      },
+      {
+        name: "goblin death",
+        audio: new GameAudio("./src/audio/goblin-death.mp3"),
+      },
+      {
+        name: "defeat",
+        audio: new GameAudio("./src/audio/Defeat.mp3"),
+      },
+      {
+        name: "victory",
+        audio: new GameAudio("./src/audio/Victory.mp3"),
+      },
+    ];
+
+    this.wizard = new Wizard();
     this.gameBoardElement = this.getGameBoardHTML();
   }
 
@@ -165,6 +195,7 @@ class Game {
   private manageFireball() {
     if (this.fireballUpdateIntervalId === undefined) {
       const fireBall = this.createFireball();
+      this.startAudio("fireball whoosh");
 
       this.fireballUpdateIntervalId = setInterval(() => {
         this.updateFireBallPosition(fireBall);
@@ -187,6 +218,8 @@ class Game {
   }
 
   private destroyGoblin(destroyedGoblin: Goblin) {
+    this.startAudio("fireball impact");
+    this.startAudio("goblin death");
     //removed goblin element from the screen
     this.gameBoardElement.removeChild(destroyedGoblin.element);
     //remove goblin from goblins array
@@ -298,8 +331,31 @@ class Game {
     this.gameBoardElement.innerHTML = "";
   }
 
+  private startAudio(audioName: string, intervalNumber: number = 0) {
+    for (let i = 0; i < this.gameAudioFiles.length; i++) {
+      const audioFile = this.gameAudioFiles[i];
+      if (audioFile.name === audioName) {
+        audioFile.audio.playAudio();
+        if (intervalNumber !== 0)
+          audioFile.audio.startAudioInterval(intervalNumber);
+        break;
+      }
+    }
+  }
+
+  private stopAudio(audioName: string) {
+    for (let i = 0; i < this.gameAudioFiles.length; i++) {
+      const audioFile = this.gameAudioFiles[i];
+      if (audioFile.name === audioName) {
+        audioFile.audio.stopAudio();
+        audioFile.audio.stopAudioInterval();
+      }
+    }
+  }
+
   public startGame() {
     document.body.appendChild(this.gameBoardElement);
+    this.startAudio("battle theme", 161000);
     this.populateBoardWithGoblins(this.goblins);
     this.addWizardToBoard();
     this.gameEventListeners();
@@ -310,9 +366,15 @@ class Game {
   public stopGame(didWin: boolean) {
     this.clearAllIntervals();
     this.clearGameBoard();
+    this.stopAudio("battle theme");
 
-    if (didWin) this.gameBoardElement.appendChild(this.youWinHTML());
-    else this.gameBoardElement.appendChild(this.youLoseHTML());
+    if (didWin) {
+      this.gameBoardElement.appendChild(this.youWinHTML());
+      this.startAudio("victory");
+    } else {
+      this.gameBoardElement.appendChild(this.youLoseHTML());
+      this.startAudio("defeat");
+    }
   }
 }
 
