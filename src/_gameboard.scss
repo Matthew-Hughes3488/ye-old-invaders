@@ -1,7 +1,10 @@
+@use "./variables" as *;
+
 .game-board {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 1fr);
+  background-color: $color-dark-brown;
 
   border: 2px solid red;
   width: 80vw;
