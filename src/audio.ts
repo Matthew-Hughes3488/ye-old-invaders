@@ -1,6 +1,6 @@
 class GameAudio {
   private audioElement: HTMLAudioElement;
-  private audioIntervalId?: number;
+  private audioIntervalId?: number = undefined;
   private audioVolume: number = 1;
 
   constructor(audioSrc: string) {
@@ -31,7 +31,13 @@ class GameAudio {
     this.audioVolume = volume;
   }
 
-  public startAudioInterval(intervalNumber: number) {}
+  public startAudioInterval(intervalNumber: number) {
+    if (this.audioIntervalId !== undefined) {
+      this.audioIntervalId = setInterval(() => {
+        this.playAudio();
+      }, intervalNumber);
+    }
+  }
 
   public stopAudioInterval() {}
 }
