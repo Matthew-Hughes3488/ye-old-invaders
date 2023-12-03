@@ -366,9 +366,15 @@ class Game {
   public stopGame(didWin: boolean) {
     this.clearAllIntervals();
     this.clearGameBoard();
+    this.stopAudio("battle theme");
 
-    if (didWin) this.gameBoardElement.appendChild(this.youWinHTML());
-    else this.gameBoardElement.appendChild(this.youLoseHTML());
+    if (didWin) {
+      this.gameBoardElement.appendChild(this.youWinHTML());
+      this.startAudio("victory");
+    } else {
+      this.gameBoardElement.appendChild(this.youLoseHTML());
+      this.startAudio("defeat");
+    }
   }
 }
 
