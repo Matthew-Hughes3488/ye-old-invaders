@@ -1,6 +1,7 @@
 import Goblin from "./goblin";
 import Wizard from "./wizard";
 import Projectile from "./projectile";
+import GameAudio from "./audio";
 
 class Game {
   private goblins: Goblin[];

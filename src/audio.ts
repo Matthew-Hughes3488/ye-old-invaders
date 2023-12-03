@@ -47,4 +47,10 @@ class GameAudio {
   }
 }
 
+type gameAudioType = {
+  name : string
+  audio : GameAudio
+}
+
 export default GameAudio;
+
