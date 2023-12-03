@@ -2,9 +2,11 @@ import Goblin from "./goblin";
 import Wizard from "./wizard";
 import Projectile from "./projectile";
 import GameAudio from "./audio";
+import gameAudioType from "./gameAudioType";
 
 class Game {
   private goblins: Goblin[];
+  private gameAudioFiles: gameAudioType[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
   private goblinMovementIntervalId?: number = undefined;
@@ -25,8 +27,35 @@ class Game {
       new Goblin(4, 2),
       new Goblin(5, 2),
     ];
-    this.wizard = new Wizard();
+    
+    this.gameAudioFiles = [
+      {
+        name: "battle theme",
+        audio: new GameAudio("./src/audio/Battle-music.mp3")
+      },
+      {
+        name: "fireball whoosh",
+        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3")
+      },
+      {
+        name: "fireball impact",
+        audio: new GameAudio("./src/audio/Fireball-impact.mp3")
+      },
+      {
+        name: "goblin death",
+        audio: new GameAudio("./src/audio/goblin-death.mp3")
+      },
+      {
+        name: "defeat",
+        audio: new GameAudio("./src/audio/Defeat.mp3")
+      },
+      {
+        name: "victory",
+        audio: new GameAudio("./src/audio/Victory.mp3")
+      }
+    ]
 
+    this.wizard = new Wizard();
     this.gameBoardElement = this.getGameBoardHTML();
   }
 
