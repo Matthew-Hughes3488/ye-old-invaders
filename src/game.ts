@@ -31,29 +31,29 @@ class Game {
     this.gameAudioFiles = [
       {
         name: "battle theme",
-        audio: new GameAudio("./src/audio/Battle-music.mp3")
+        audio: new GameAudio("./src/audio/Battle-music.mp3"),
       },
       {
         name: "fireball whoosh",
-        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3")
+        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3"),
       },
       {
         name: "fireball impact",
-        audio: new GameAudio("./src/audio/Fireball-impact.mp3")
+        audio: new GameAudio("./src/audio/Fireball-impact.mp3"),
       },
       {
         name: "goblin death",
-        audio: new GameAudio("./src/audio/goblin-death.mp3")
+        audio: new GameAudio("./src/audio/goblin-death.mp3"),
       },
       {
         name: "defeat",
-        audio: new GameAudio("./src/audio/Defeat.mp3")
+        audio: new GameAudio("./src/audio/Defeat.mp3"),
       },
       {
         name: "victory",
-        audio: new GameAudio("./src/audio/Victory.mp3")
-      }
-    ]
+        audio: new GameAudio("./src/audio/Victory.mp3"),
+      },
+    ];
 
     this.wizard = new Wizard();
     this.gameBoardElement = this.getGameBoardHTML();
@@ -328,13 +328,30 @@ class Game {
     this.gameBoardElement.innerHTML = "";
   }
 
-  private startAudio(audioName : string, intervalNumber : number = 0;){
-    this.gameAudioFiles.forEach(audioFile =>{
-      if(audioFile.name === audioName){
-        if(intervalNumber === 0) audioFile.audio.playAudio();
-        else audioFile.audio.startAudioInterval(intervalNumber);
+  private startAudio(audioName: string, intervalNumber: number = 0) {
+
+    for (let i = 0; i < this.gameAudioFiles.length; i++) {
+      const audioFile = this.gameAudioFiles[i];
+      if (audioFile.name === audioName) {
+        if (intervalNumber === 0) {
+          audioFile.audio.playAudio();
+          break;
+        } else {
+          audioFile.audio.startAudioInterval(intervalNumber);
+          break;
+        }
       }
-    })
+    }
+  }
+
+  private stopAudio(audioName: string) {
+    for (let i = 0; i < this.gameAudioFiles.length; i++) {
+      const audioFile = this.gameAudioFiles[i];
+      if (audioFile.name === audioName) {
+        audioFile.audio.stopAudio();
+        audioFile.audio.stopAudioInterval();
+      }
+    }
   }
 
   public startGame() {
