@@ -2,12 +2,12 @@ class GameAudio {
   private audioElement: HTMLAudioElement;
   private audioIntervalId?: number;
 
-  constructor(audioSrc : string) {
+  constructor(audioSrc: string) {
     this.audioElement = this.createAudioHTML(audioSrc);
     this.addToHTML();
   }
 
-  private createAudioHTML(audioSrc : string) : HTMLAudioElement {
+  private createAudioHTML(audioSrc: string): HTMLAudioElement {
     const audioElement = document.createElement("audio");
     audioElement.src = audioSrc;
     return audioElement;
@@ -17,13 +17,17 @@ class GameAudio {
     document.body.appendChild(this.audioElement);
   }
 
-  public playAudio(intervalNumber: number = 0) {}
+  public playAudio(intervalNumber: number = 0) {
+    this.audioElement.play();
+  }
 
-  public stopAudio() {}
+  public stopAudio() {
+    this.audioElement.pause();
+  }
 
   setAudioVolume(volume: number) {}
 
-  private startInterval(intervalNumber: number) {}
+  public startAudioInterval(intervalNumber: number) {}
 
-  private stopInterval() {}
+  public stopAudioInterval() {}
 }
