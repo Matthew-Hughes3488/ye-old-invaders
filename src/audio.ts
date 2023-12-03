@@ -18,7 +18,7 @@ class GameAudio {
     document.body.appendChild(this.audioElement);
   }
 
-  public playAudio(intervalNumber: number = 0) {
+  public playAudio() {
     this.audioElement.volume = this.audioVolume;
     this.audioElement.play();
   }
@@ -46,3 +46,5 @@ class GameAudio {
     }
   }
 }
+
+export default GameAudio;
