@@ -218,6 +218,7 @@ class Game {
   }
 
   private destroyGoblin(destroyedGoblin: Goblin) {
+    this.startAudio("fireball impact");
     this.startAudio("goblin death");
     //removed goblin element from the screen
     this.gameBoardElement.removeChild(destroyedGoblin.element);
