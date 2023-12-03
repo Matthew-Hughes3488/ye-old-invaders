@@ -1,6 +1,7 @@
 class GameAudio {
   private audioElement: HTMLAudioElement;
   private audioIntervalId?: number;
+  private audioVolume: number = 1;
 
   constructor(audioSrc: string) {
     this.audioElement = this.createAudioHTML(audioSrc);
@@ -25,7 +26,9 @@ class GameAudio {
     this.audioElement.pause();
   }
 
-  setAudioVolume(volume: number) {}
+  public setAudioVolume(volume: number) {
+    this.audioVolume = volume;
+  }
 
   public startAudioInterval(intervalNumber: number) {}
 
