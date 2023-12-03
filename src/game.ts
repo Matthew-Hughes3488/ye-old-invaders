@@ -195,6 +195,7 @@ class Game {
   private manageFireball() {
     if (this.fireballUpdateIntervalId === undefined) {
       const fireBall = this.createFireball();
+      this.startAudio("fireball whoosh");
 
       this.fireballUpdateIntervalId = setInterval(() => {
         this.updateFireBallPosition(fireBall);
