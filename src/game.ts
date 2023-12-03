@@ -27,7 +27,7 @@ class Game {
       new Goblin(4, 2),
       new Goblin(5, 2),
     ];
-    
+
     this.gameAudioFiles = [
       {
         name: "battle theme",
@@ -326,6 +326,15 @@ class Game {
 
   private clearGameBoard() {
     this.gameBoardElement.innerHTML = "";
+  }
+
+  private startAudio(audioName : string, intervalNumber : number = 0;){
+    this.gameAudioFiles.forEach(audioFile =>{
+      if(audioFile.name === audioName){
+        if(intervalNumber === 0) audioFile.audio.playAudio();
+        else audioFile.audio.startAudioInterval(intervalNumber);
+      }
+    })
   }
 
   public startGame() {
