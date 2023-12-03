@@ -39,5 +39,10 @@ class GameAudio {
     }
   }
 
-  public stopAudioInterval() {}
+  public stopAudioInterval() {
+    if (this.audioIntervalId !== undefined) {
+        clearInterval(this.audioIntervalId);
+        this.audioIntervalId = undefined;
+    }
+  }
 }
