@@ -2,6 +2,7 @@ class Wizard {
   private xCordinate: number = 4;
   private yCordinate: number = 8;
   public element: HTMLImageElement;
+  private isMoving : boolean = false;
 
   constructor() {
     this.element = this.getHTML();
@@ -30,15 +31,21 @@ class Wizard {
   }
 
   public moveRight() {
+    if(!this.isMoving){
+      this.isMoving = true;
     this.xCordinate++;
     this.element.style.animation = "move-right-animation 0.5s ease-in-out";
     this.animationEndListener();
+    }
   }
 
   public moveLeft() {
+    if(!this.isMoving){
     this.xCordinate--;
+    this.isMoving = true;
     this.element.style.animation = "move-left-animation 0.5s ease-in-out";
     this.animationEndListener();
+    }
   }
 
   private animationEndListener() {
@@ -47,6 +54,7 @@ class Wizard {
       () => {
         this.stopMovementAnimation();
         this.updateCordinates();
+        this.isMoving = false
       },
       { once: true }
     );
