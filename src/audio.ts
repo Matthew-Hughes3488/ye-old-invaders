@@ -19,6 +19,7 @@ class GameAudio {
   }
 
   public playAudio() {
+    this.audioElement.currentTime = 0;
     this.audioElement.volume = this.audioVolume;
     this.audioElement.play();
   }
