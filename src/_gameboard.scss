@@ -27,4 +27,26 @@
     grid-area: 3/2/5/8;
     align-self: center;
   }
+
+}
+
+@keyframes move-left-animation {
+  to {
+    transform: translateX(-10vw);
+  }
+}
+
+@keyframes move-right-animation {
+  to {
+    transform: translateX(10vw);
+  }
+}
+
+@keyframes move-up-animation {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10vh); // Assuming each row is 10vh
+  }
 }
