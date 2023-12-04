@@ -28,12 +28,6 @@
     align-self: center;
   }
 
-  &move-left{
-    animation: move-left-animation 0.1s ease-in-out;
-  }
-  &move-right{
-    animation: move-right-animation 0.1s ease-in-out;
-  }
 }
 
 @keyframes move-left-animation {
@@ -45,5 +39,14 @@
 @keyframes move-right-animation {
   to {
     transform: translateX(10vw);
+  }
+}
+
+@keyframes move-up-animation {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10vh); // Assuming each row is 10vh
   }
 }

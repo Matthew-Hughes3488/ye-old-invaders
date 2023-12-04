@@ -1,6 +1,7 @@
 class Projectile {
   private xCordinate: number;
   private yCordinate: number;
+  private isAnimated: boolean = false;
   public element: HTMLImageElement;
 
   constructor(xValue: number, yValue: number) {
@@ -21,7 +22,7 @@ class Projectile {
     const projectileElement = document.createElement("img");
     projectileElement.src = "./src/images/fireball.png";
     projectileElement.classList.add("game-board__fireball");
-    projectileElement.style.transform = "rotate(180deg)";
+    //projectileElement.style.transform = "rotate(180deg)";
     projectileElement.style.gridColumn = `${this.xCordinate} / span 1`;
     projectileElement.style.gridRow = `${this.yCordinate} / span 1`;
     return projectileElement;
@@ -33,8 +34,8 @@ class Projectile {
   }
 
   public moveUp() {
-    this.yCordinate--;
-    this.updateCordinates();
+      this.yCordinate--;
+      this.updateCordinates();
   }
 }
 

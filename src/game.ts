@@ -251,7 +251,7 @@ class Game {
   private goblinMovementInterval() {
     this.goblinMovementIntervalId = setInterval(() => {
       this.updateGoblinPosition();
-    }, 10000);
+    }, 2000);
   }
 
   private gameEventListeners() {
