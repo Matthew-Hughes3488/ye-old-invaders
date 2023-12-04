@@ -31,12 +31,18 @@ class Wizard {
 
   public moveRight() {
     this.xCordinate++;
-    this.updateCordinates();
+    this.element.classList.add("move-right");
+    this.element.classList.remove("move-left", "move-right");
   }
 
   public moveLeft() {
     this.xCordinate--;
-    this.updateCordinates();
+    this.element.classList.add("move-left");
+    this.element.classList.remove("move-left", "move-right");
+  }
+  
+  private stopMovementAnimation() {
+    this.element.classList.remove("move-left", "move-right");
   }
 }
 

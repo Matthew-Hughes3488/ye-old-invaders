@@ -13,6 +13,7 @@
   &__player-character {
     width: 100%;
     height: 100%;
+    transition: transform 0.5s ease-in-out;
   }
   &__goblin {
     width: 100%;
@@ -26,5 +27,12 @@
     color: $color-tan;
     grid-area: 3/2/5/8;
     align-self: center;
+  }
+
+  &move-left{
+    transform: translateX(-10vw);
+  }
+  &move-right{
+    transform: translateX(10vw);
   }
 }
