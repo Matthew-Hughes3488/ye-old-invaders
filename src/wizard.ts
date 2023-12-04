@@ -31,18 +31,24 @@ class Wizard {
 
   public moveRight() {
     this.xCordinate++;
-    this.element.classList.add("move-right");
-    this.element.classList.remove("move-left", "move-right");
+    this.element.style.animation = "move-right-animation 0.5s ease-in-out";
+    this.element.addEventListener("animationend", () => {
+      this.stopMovementAnimation();
+      this.updateCordinates();
+    }, { once: true });
   }
 
   public moveLeft() {
     this.xCordinate--;
-    this.element.classList.add("move-left");
-    this.element.classList.remove("move-left", "move-right");
+    this.element.style.animation = "move-left-animation 0.5s ease-in-out";
+    this.element.addEventListener("animationend", () => {
+      this.stopMovementAnimation();
+      this.updateCordinates();
+    }, { once: true });
   }
   
   private stopMovementAnimation() {
-    this.element.classList.remove("move-left", "move-right");
+    this.element.style.animation = "none";
   }
 }
 
