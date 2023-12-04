@@ -403,6 +403,7 @@ class Game {
       new Goblin(4, 2),
       new Goblin(5, 2),
     ];
+    Goblin.movementDirection = "right";
     this.stopAllAudio();
     this.startGame();
   }
