@@ -1,7 +1,6 @@
 class Projectile {
   private xCordinate: number;
   private yCordinate: number;
-  private isAnimated: boolean = false;
   public element: HTMLImageElement;
 
   constructor(xValue: number, yValue: number) {
