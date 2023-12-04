@@ -9,6 +9,8 @@ class Game {
   private gameAudioFiles: gameAudioType[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
+  private youWinMessage: HTMLElement;
+  private youLoseMessage: HTMLElement;
   private goblinMovementIntervalId?: number = undefined;
   private fireballUpdateIntervalId?: number = undefined;
   private collisionCheckerIntervalId?: number = undefined;
@@ -56,6 +58,8 @@ class Game {
     ];
 
     this.wizard = new Wizard();
+    this.youWinMessage = this.youWinHTML();
+    this.youLoseMessage = this.youLoseHTML();
     this.gameBoardElement = this.getGameBoardHTML();
   }
 
@@ -327,8 +331,8 @@ class Game {
     }
   }
 
-  private clearGameBoard() {
-    this.gameBoardElement.innerHTML = "";
+  public clearGameBoard() {
+    this.gameBoardElement.replaceChildren("");
   }
 
   private startAudio(audioName: string, intervalNumber: number = 0) {
@@ -369,12 +373,35 @@ class Game {
     this.stopAudio("battle theme");
 
     if (didWin) {
-      this.gameBoardElement.appendChild(this.youWinHTML());
+      this.gameBoardElement.appendChild(this.youWinMessage);
       this.startAudio("victory");
     } else {
-      this.gameBoardElement.appendChild(this.youLoseHTML());
+      this.gameBoardElement.appendChild(this.youLoseMessage);
       this.startAudio("defeat");
     }
+  }
+
+  // Rest game function, reset goblins array,
+  // Clear the board, clear all set intervals,
+  // Call the start game function
+  public resetGame(){
+    this.clearAllIntervals();
+    this.clearGameBoard();
+    document.body.removeChild(this.gameBoardElement);
+    this.goblins = [
+      new Goblin(1, 1),
+      new Goblin(2, 1),
+      new Goblin(3, 1),
+      new Goblin(4, 1),
+      new Goblin(5, 1),
+      new Goblin(1, 2),
+      new Goblin(2, 2),
+      new Goblin(3, 2),
+      new Goblin(4, 2),
+      new Goblin(5, 2),
+    ];
+    //stop all audio
+    this.startGame();
   }
 }
 

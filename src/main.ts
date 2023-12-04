@@ -5,15 +5,16 @@ import GameAudio from "./audio";
 const startButton = document.querySelector(".start-button");
 if (!startButton) throw new Error("ssd");
 
-let game : Game;
-
-
-
+let gameStarted = false;
+const game = new Game();
 
 const handleStartButtonPress = () => {
-    if(!game){
-        game = new Game();
+    if(!gameStarted){
         game.startGame();
+        gameStarted = true;
+    }
+    else{
+        game.resetGame();
     }
 }
 
