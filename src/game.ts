@@ -357,6 +357,12 @@ class Game {
     }
   }
 
+  private stopAllAudio() {
+    this.gameAudioFiles.forEach(file =>{
+      file.audio.stopAudio()
+    })
+  }
+
   public startGame() {
     document.body.appendChild(this.gameBoardElement);
     this.startAudio("battle theme", 161000);
@@ -381,9 +387,6 @@ class Game {
     }
   }
 
-  // Rest game function, reset goblins array,
-  // Clear the board, clear all set intervals,
-  // Call the start game function
   public resetGame(){
     this.clearAllIntervals();
     this.clearGameBoard();
@@ -400,7 +403,7 @@ class Game {
       new Goblin(4, 2),
       new Goblin(5, 2),
     ];
-    //stop all audio
+    this.stopAllAudio();
     this.startGame();
   }
 }
