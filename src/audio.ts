@@ -1,10 +1,11 @@
 class GameAudio {
   private audioElement: HTMLAudioElement;
+  private audioVolume: number;
   private audioIntervalId?: number = undefined;
-  private audioVolume: number = 1;
 
-  constructor(audioSrc: string) {
+  constructor(audioSrc: string, volume: number = 1) {
     this.audioElement = this.createAudioHTML(audioSrc);
+    this.audioVolume = volume;
     this.addToHTML();
   }
 
@@ -46,11 +47,6 @@ class GameAudio {
         this.audioIntervalId = undefined;
     }
   }
-}
-
-type gameAudioType = {
-  name : string
-  audio : GameAudio
 }
 
 export default GameAudio;
