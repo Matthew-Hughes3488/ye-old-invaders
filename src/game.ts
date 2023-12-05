@@ -9,8 +9,6 @@ class Game {
   private gameAudioFiles: gameAudioType[];
   private wizard: Wizard;
   private gameBoardElement: HTMLElement;
-  private youWinMessage: HTMLElement;
-  private youLoseMessage: HTMLElement;
   private goblinMovementIntervalId?: number = undefined;
   private fireballUpdateIntervalId?: number = undefined;
   private collisionCheckerIntervalId?: number = undefined;
@@ -58,8 +56,6 @@ class Game {
     ];
 
     this.wizard = new Wizard();
-    this.youWinMessage = this.youWinHTML();
-    this.youLoseMessage = this.youLoseHTML();
     this.gameBoardElement = this.getGameBoardHTML();
   }
 
@@ -298,11 +294,16 @@ class Game {
       this.gameOverChecker();
     }, 1000);
   }
-  private youWinHTML(): HTMLHeadElement {
+  private youWinHTML() {
     const message = document.createElement("h1");
     message.classList.add("game-board__game-over-message");
     message.textContent = "Well Done, you slayed the goblin hoard";
-    return message;
+
+    const image = document.createElement("img");
+    image.src = "./src/images/happy-wizard.gif"
+
+    this.gameBoardElement.appendChild(message);
+    this.gameBoardElement.appendChild(image);
   }
 
   private youLoseHTML(): HTMLHeadElement {
@@ -379,10 +380,10 @@ class Game {
     this.stopAudio("battle theme");
 
     if (didWin) {
-      this.gameBoardElement.appendChild(this.youWinMessage);
+      this.youWinHTML();
       this.startAudio("victory");
     } else {
-      this.gameBoardElement.appendChild(this.youLoseMessage);
+      this.gameBoardElement.appendChild(this.youLoseHTML());
       this.startAudio("defeat");
     }
   }
