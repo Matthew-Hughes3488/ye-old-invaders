@@ -5,6 +5,7 @@
   grid-template-columns: repeat(8, 10vw);
   grid-template-rows: repeat(8, 10vh);
   background-color: $color-dark-brown;
+  margin: 10px;
 
   border: 2px solid $color-light-brown;
   width: 80vw;
@@ -23,9 +24,19 @@
     height: 100%;
   }
   &__game-over-message {
+    margin: 0px 5px;
     color: $color-tan;
-    grid-area: 3/2/5/8;
+    grid-area: 6/1/7/9;
     align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+  &__game-over-meme {
+    grid-area: 1/1/6/9;
+    width: 60vw;
+    height: auto;
+    align-self: center;
+    justify-self: center;
   }
 
 }
@@ -39,14 +50,5 @@
 @keyframes move-right-animation {
   to {
     transform: translateX(10vw);
-  }
-}
-
-@keyframes move-up-animation {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-10vh);
   }
 }
