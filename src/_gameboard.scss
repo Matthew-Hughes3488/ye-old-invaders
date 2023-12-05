@@ -24,11 +24,17 @@
   }
   &__game-over-message {
     color: $color-tan;
-    grid-area: 3/2/5/8;
+    grid-area: 7/1/8/9;
     align-self: center;
+    justify-self: center;
+    text-align: center;
   }
   &__game-over-meme {
-    
+    grid-area: 1/1/6/9;
+    width: 60vw;
+    height: auto;
+    align-self: center;
+    justify-self: center;
   }
 
 }
@@ -42,14 +48,5 @@
 @keyframes move-right-animation {
   to {
     transform: translateX(10vw);
-  }
-}
-
-@keyframes move-up-animation {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-10vh);
   }
 }
