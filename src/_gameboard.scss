@@ -5,6 +5,7 @@
   grid-template-columns: repeat(8, 10vw);
   grid-template-rows: repeat(8, 10vh);
   background-color: $color-dark-brown;
+  margin: 10px;
 
   border: 2px solid $color-light-brown;
   width: 80vw;
@@ -23,8 +24,9 @@
     height: 100%;
   }
   &__game-over-message {
+    margin: 0px 5px;
     color: $color-tan;
-    grid-area: 7/1/8/9;
+    grid-area: 6/1/7/9;
     align-self: center;
     justify-self: center;
     text-align: center;
