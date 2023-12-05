@@ -31,15 +31,15 @@ class Game {
     this.gameAudioFiles = [
       {
         name: "battle theme",
-        audio: new GameAudio("./src/audio/Battle-music.mp3", 0.2),
+        audio: new GameAudio("./src/audio/Battle-music.mp3", 0.1),
       },
       {
         name: "fireball whoosh",
-        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3", 0.5),
+        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3", 0.4),
       },
       {
         name: "fireball impact",
-        audio: new GameAudio("./src/audio/Fireball-impact.mp3", 0.5),
+        audio: new GameAudio("./src/audio/Fireball-impact.mp3", 0.3),
       },
       {
         name: "goblin death",
@@ -47,11 +47,11 @@ class Game {
       },
       {
         name: "defeat",
-        audio: new GameAudio("./src/audio/Defeat.mp3", 0.5),
+        audio: new GameAudio("./src/audio/Defeat.mp3", 0.2),
       },
       {
         name: "victory",
-        audio: new GameAudio("./src/audio/Victory.mp3", 0.5),
+        audio: new GameAudio("./src/audio/Victory.mp3", 0.2),
       },
     ];
 
