@@ -299,6 +299,7 @@ class Game {
     const message = document.createElement("h1");
     message.classList.add("game-board__game-over-message");
     message.textContent = "Well Done, you slayed the goblin hoard";
+
     const image = document.createElement("img");
     image.classList.add("game-board__game-over-meme");
     image.src = "./src/images/happy-wizard.gif";
@@ -311,6 +312,7 @@ class Game {
     const message = document.createElement("h1");
     message.classList.add("game-board__game-over-message");
     message.textContent = "You failed, the city... is lost";
+
     const image = document.createElement("img");
     image.classList.add("game-board__game-over-meme");
     image.src = "./src/images/sad-wizard.gif";
