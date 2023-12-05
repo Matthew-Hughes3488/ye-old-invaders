@@ -4,6 +4,9 @@ import Projectile from "./projectile";
 import GameAudio from "./audio";
 import gameAudioType from "./gameAudioType";
 
+/**
+ * The Game class represents the main game logic and functionality.
+ */
 class Game {
   private goblins: Goblin[];
   private gameAudioFiles: gameAudioType[];
@@ -59,6 +62,11 @@ class Game {
     this.gameBoardElement = this.getGameBoardHTML();
   }
 
+  /**
+   * Generates and returns the HTML element for the game board.
+   *
+   * @returns {HTMLElement} - The game board HTML element.
+   */
   private getGameBoardHTML() {
     const gameBoardElement = document.createElement("section");
     gameBoardElement.classList.add("game-board");
@@ -89,11 +97,10 @@ class Game {
   }
 
   /**
-   * Takes an array of goblins and check to see if any have reached the
-   * end of the game board
+   * Checks if any goblin has reached the end of the game board.
    *
-   * @param {Goblin[]} goblins - array of goblins
-   * @returns {boolean} - true if any goblin has reached the end of the board, otherwise false
+   * @param {Goblin[]} goblins - An array of goblins to check.
+   * @returns {boolean} - True if any goblin has reached the end of the board, otherwise false.
    */
   private haveGoblinsReachedEndOfBoard(): boolean {
     let result = false;
@@ -110,11 +117,9 @@ class Game {
   }
 
   /**
-   * Takes an array of goblins, updates the ycoordinate for each one
-   * Updates the goblins postion on the grid.
-   * Updates the horizontal direction the goblins are moving in
+   * Moves the goblins down on the game grid.
+   * Updates the goblins' positions and changes their horizontal movement direction.
    *
-   * @param {Goblin[]} goblins - array of goblins
    * @returns {void}
    */
   private moveGoblinsDown() {
@@ -127,10 +132,9 @@ class Game {
   }
 
   /**
-   * Takes an array of goblins, updates the x coordinate for each one
-   * Depending on if they are currently moving left or right
+   * Moves the goblins horizontally based on their current direction.
+   * If the goblins are moving right, they move to the right; if left, they move to the left.
    *
-   * @param {Goblin[]} goblins - array of goblins
    * @returns {void}
    */
   private moveGoblinsHorizontailly() {
@@ -146,11 +150,9 @@ class Game {
   }
 
   /**
-   * moves the goblins across and down the game grid
-   * If they have reached the end of the board they move down
-   * if they havent they will move left or right
+   * Updates the position of the goblins on the game grid.
+   * If any goblin has reached the end of the board, they move down; otherwise, they move horizontally.
    *
-   * @param {Goblin[]} goblins - array of goblins
    * @returns {void}
    */
   private updateGoblinPosition() {
@@ -161,18 +163,33 @@ class Game {
     }
   }
 
+  /**
+   * Handles the left movement of the wizard if it is not at the leftmost boundary.
+   *
+   * @returns {void}
+   */
   private handleLeftWizardMovement() {
     if (this.wizard.getXCordinate() != 1) {
       this.wizard.moveLeft();
     }
   }
 
+  /**
+   * Handles the right movement of the wizard if it is not at the rightmost boundary.
+   *
+   * @returns {void}
+   */
   private handleRightWizardMovement() {
     if (this.wizard.getXCordinate() != 8) {
       this.wizard.moveRight();
     }
   }
 
+  /**
+   * Creates a new fireball projectile at the wizard's position.
+   *
+   * @returns {Projectile} - The newly created fireball projectile.
+   */
   private createFireball(): Projectile {
     const xValue = this.wizard.getXCordinate();
     const yValue = this.wizard.getYCordinate() - 1;
@@ -181,10 +198,23 @@ class Game {
     return fireBall;
   }
 
+  /**
+   * Removes the specified fireball projectile from the game board.
+   *
+   * @param {Projectile} fireBall - The fireball projectile to be removed.
+   * @returns {void}
+   */
   private removeFireball(fireBall: Projectile) {
     this.gameBoardElement.removeChild(fireBall.element);
   }
 
+  /**
+   * Updates the position of the specified fireball projectile on the game board.
+   * If the fireball reaches the top of the board, it is removed; otherwise, it moves upward.
+   *
+   * @param {Projectile} fireBall - The fireball projectile to be updated.
+   * @returns {void}
+   */
   private updateFireBallPosition(fireBall: Projectile) {
     if (fireBall.getYCordinate() === 1) {
       this.removeFireball(fireBall);
@@ -192,6 +222,12 @@ class Game {
     } else fireBall.moveUp();
   }
 
+  /**
+   * Manages the creation, movement, and collision checking of the fireball projectile.
+   * If no fireball is currently active, it creates a new fireball and starts intervals for updating its position and checking collisions.
+   *
+   * @returns {void}
+   */
   private manageFireball() {
     if (this.fireballUpdateIntervalId === undefined) {
       const fireBall = this.createFireball();
@@ -206,6 +242,11 @@ class Game {
     }
   }
 
+  /**
+   * Clears the intervals related to fireball movement and collision checking.
+   *
+   * @returns {void}
+   */
   private clearFireBallAndCollisionIntervals() {
     if (this.fireballUpdateIntervalId !== undefined) {
       clearInterval(this.fireballUpdateIntervalId);
@@ -217,6 +258,13 @@ class Game {
     }
   }
 
+  /**
+   * Destroys a goblin by removing its element from the screen, playing audio for impact and death,
+   * and removing it from the array of active goblins.
+   *
+   * @param {Goblin} destroyedGoblin - The goblin to be destroyed.
+   * @returns {void}
+   */
   private destroyGoblin(destroyedGoblin: Goblin) {
     this.startAudio("fireball impact");
     this.startAudio("goblin death");
@@ -228,6 +276,13 @@ class Game {
     });
   }
 
+  /**
+   * Checks for collisions between the specified fireball projectile and active goblins.
+   * If a collision is detected, the corresponding goblin is destroyed, and the fireball is removed.
+   *
+   * @param {Projectile} fireBall - The fireball projectile to check for collisions.
+   * @returns {void}
+   */
   private collisionChecker(fireBall: Projectile) {
     const fireBallXCoordinate = fireBall.getXCordinate();
     const fireBallYCoordinate = fireBall.getYCordinate();
@@ -244,12 +299,22 @@ class Game {
     });
   }
 
+  /**
+   * Initiates an interval to update the position of the goblins on the game grid at a regular interval.
+   *
+   * @returns {void}
+   */
   private goblinMovementInterval() {
     this.goblinMovementIntervalId = setInterval(() => {
       this.updateGoblinPosition();
     }, 2000);
   }
 
+  /**
+   * Registers event listeners for keyboard input to control the wizard's movement and fireball creation.
+   *
+   * @returns {void}
+   */
   private gameEventListeners() {
     document.addEventListener("keydown", (event) => {
       if (event.code === "ArrowLeft") {
@@ -262,11 +327,21 @@ class Game {
     });
   }
 
+  /**
+   * Checks if all goblins have been defeated, meaning the array of active goblins is empty.
+   *
+   * @returns {boolean} - True if all goblins are defeated, otherwise false.
+   */
   private allGoblinsDead(): boolean {
     if (this.goblins.length === 0) return true;
     else return false;
   }
 
+  /**
+   * Checks if any goblin has reached the row where the wizard is located, indicating the wizard's defeat.
+   *
+   * @returns {boolean} - True if any goblin has reached the wizard's row, otherwise false.
+   */
   private goblinsDestroyedWizard(): boolean {
     let result = false;
 
@@ -281,6 +356,12 @@ class Game {
     return result;
   }
 
+  /**
+   * Checks the game state to determine if the game should be stopped.
+   * If all goblins are defeated, the player wins; if any goblin reaches the wizard, the player loses.
+   *
+   * @returns {void}
+   */
   private gameOverChecker() {
     if (this.allGoblinsDead()) {
       this.stopGame(true);
@@ -289,12 +370,24 @@ class Game {
     }
   }
 
+  /**
+   * Initiates an interval to periodically check the game state for a game-over condition.
+   * The interval determines whether the player has won or lost the game.
+   *
+   * @returns {void}
+   */
   private gameOverInterval() {
     this.gameOverIntervalId = setInterval(() => {
       this.gameOverChecker();
     }, 1000);
   }
 
+  /**
+   * Displays a victory message on the game board when the player successfully defeats all goblins.
+   * It also adds a happy wizard image to celebrate the victory.
+   *
+   * @returns {void}
+   */
   private youWinHTML() {
     const message = document.createElement("h1");
     message.classList.add("game-board__game-over-message");
@@ -308,6 +401,12 @@ class Game {
     this.gameBoardElement.appendChild(image);
   }
 
+  /**
+   * Displays a defeat message on the game board when the goblins reach the wizard.
+   * It also adds a sad wizard image to convey the loss.
+   *
+   * @returns {void}
+   */
   private youLoseHTML() {
     const message = document.createElement("h1");
     message.classList.add("game-board__game-over-message");
@@ -321,6 +420,12 @@ class Game {
     this.gameBoardElement.appendChild(image);
   }
 
+  /**
+   * Clears all active intervals used in the game, including fireball updates,
+   * goblin movements, collision checks, and game-over checks.
+   *
+   * @returns {void}
+   */
   private clearAllIntervals() {
     if (this.fireballUpdateIntervalId !== undefined) {
       clearInterval(this.fireballUpdateIntervalId);
@@ -340,10 +445,23 @@ class Game {
     }
   }
 
+  /**
+   * Clears the entire game board by removing all child elements from the game board element.
+   *
+   * @returns {void}
+   */
   public clearGameBoard() {
     this.gameBoardElement.replaceChildren("");
   }
 
+  /**
+   * Initiates the playback of a specific audio file by name and, if provided,
+   * starts an interval for continuous audio playback.
+   *
+   * @param {string} audioName - The name of the audio file to be played.
+   * @param {number} [intervalNumber=0] - Optional. If provided, starts an interval for continuous audio playback.
+   * @returns {void}
+   */
   private startAudio(audioName: string, intervalNumber: number = 0) {
     for (let i = 0; i < this.gameAudioFiles.length; i++) {
       const audioFile = this.gameAudioFiles[i];
@@ -356,6 +474,12 @@ class Game {
     }
   }
 
+  /**
+   * Stops the playback of a specific audio file by name and clears any associated playback intervals.
+   *
+   * @param {string} audioName - The name of the audio file to be stopped.
+   * @returns {void}
+   */
   private stopAudio(audioName: string) {
     for (let i = 0; i < this.gameAudioFiles.length; i++) {
       const audioFile = this.gameAudioFiles[i];
@@ -366,12 +490,24 @@ class Game {
     }
   }
 
+  /**
+   * Stops the playback of all audio files in the game and clears any associated playback intervals.
+   *
+   * @returns {void}
+   */
   private stopAllAudio() {
     this.gameAudioFiles.forEach((file) => {
       file.audio.stopAudio();
     });
   }
 
+  /**
+   * Initializes and starts the game by adding the game board to the document body,
+   * playing the battle theme audio, populating the board with goblins, adding the wizard to the board,
+   * setting up event listeners, starting the goblin movement interval, and initiating the game over interval.
+   *
+   * @returns {void}
+   */
   public startGame() {
     document.body.appendChild(this.gameBoardElement);
     this.startAudio("battle theme", 161000);
@@ -382,6 +518,13 @@ class Game {
     this.gameOverInterval();
   }
 
+  /**
+   * Stops the game by clearing all intervals, clearing the game board,
+   * stopping the battle theme audio, and displaying a game over message based on the game outcome.
+   *
+   * @param {boolean} didWin - Indicates whether the player won or lost the game.
+   * @returns {void}
+   */
   public stopGame(didWin: boolean) {
     this.clearAllIntervals();
     this.clearGameBoard();
@@ -396,10 +539,14 @@ class Game {
     }
   }
 
+  /**
+   * Resets the game by clearing all intervals, clearing the game board,
+   * removing the game board element from the document body, reinitializing goblins,
+   * setting the goblin movement direction, stopping all audio, and restarting the game.
+   *
+   * @returns {void}
+   */
   public resetGame() {
-    this.clearAllIntervals();
-    this.clearGameBoard();
-    document.body.removeChild(this.gameBoardElement);
     this.goblins = [
       new Goblin(1, 1),
       new Goblin(2, 1),
@@ -413,7 +560,13 @@ class Game {
       new Goblin(5, 2),
     ];
     Goblin.movementDirection = "right";
+
     this.stopAllAudio();
+
+    this.clearAllIntervals();
+    this.clearGameBoard();
+    document.body.removeChild(this.gameBoardElement);
+
     this.startGame();
   }
 }
