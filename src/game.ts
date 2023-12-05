@@ -31,27 +31,27 @@ class Game {
     this.gameAudioFiles = [
       {
         name: "battle theme",
-        audio: new GameAudio("./src/audio/Battle-music.mp3"),
+        audio: new GameAudio("./src/audio/Battle-music.mp3", 0.2),
       },
       {
         name: "fireball whoosh",
-        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3"),
+        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3", 0.5),
       },
       {
         name: "fireball impact",
-        audio: new GameAudio("./src/audio/Fireball-impact.mp3"),
+        audio: new GameAudio("./src/audio/Fireball-impact.mp3", 0.5),
       },
       {
         name: "goblin death",
-        audio: new GameAudio("./src/audio/goblin-death.mp3"),
+        audio: new GameAudio("./src/audio/goblin-death.mp3", 0.5),
       },
       {
         name: "defeat",
-        audio: new GameAudio("./src/audio/Defeat.mp3"),
+        audio: new GameAudio("./src/audio/Defeat.mp3", 0.5),
       },
       {
         name: "victory",
-        audio: new GameAudio("./src/audio/Victory.mp3"),
+        audio: new GameAudio("./src/audio/Victory.mp3", 0.5),
       },
     ];
 
