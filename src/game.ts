@@ -294,23 +294,29 @@ class Game {
       this.gameOverChecker();
     }, 1000);
   }
+
   private youWinHTML() {
     const message = document.createElement("h1");
     message.classList.add("game-board__game-over-message");
     message.textContent = "Well Done, you slayed the goblin hoard";
-
     const image = document.createElement("img");
-    image.src = "./src/images/happy-wizard.gif"
+    image.classList.add("game-board__game-over-meme");
+    image.src = "./src/images/happy-wizard.gif";
 
     this.gameBoardElement.appendChild(message);
     this.gameBoardElement.appendChild(image);
   }
 
-  private youLoseHTML(): HTMLHeadElement {
+  private youLoseHTML() {
     const message = document.createElement("h1");
     message.classList.add("game-board__game-over-message");
     message.textContent = "You failed, the city... is lost";
-    return message;
+    const image = document.createElement("img");
+    image.classList.add("game-board__game-over-meme");
+    image.src = "./src/images/sad-wizard.gif";
+
+    this.gameBoardElement.appendChild(message);
+    this.gameBoardElement.appendChild(image);
   }
 
   private clearAllIntervals() {
@@ -359,9 +365,9 @@ class Game {
   }
 
   private stopAllAudio() {
-    this.gameAudioFiles.forEach(file =>{
-      file.audio.stopAudio()
-    })
+    this.gameAudioFiles.forEach((file) => {
+      file.audio.stopAudio();
+    });
   }
 
   public startGame() {
@@ -383,12 +389,12 @@ class Game {
       this.youWinHTML();
       this.startAudio("victory");
     } else {
-      this.gameBoardElement.appendChild(this.youLoseHTML());
+      this.youLoseHTML();
       this.startAudio("defeat");
     }
   }
 
-  public resetGame(){
+  public resetGame() {
     this.clearAllIntervals();
     this.clearGameBoard();
     document.body.removeChild(this.gameBoardElement);
