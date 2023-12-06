@@ -42,11 +42,11 @@ class Game {
       },
       {
         name: "fireball impact",
-        audio: new GameAudio("./src/audio/Fireball-impact.mp3", 0.3),
+        audio: new GameAudio("./src/audio/Fireball-impact.mp3", 0.2),
       },
       {
         name: "goblin death",
-        audio: new GameAudio("./src/audio/goblin-death.mp3", 0.5),
+        audio: new GameAudio("./src/audio/goblin-death.mp3", 0.6),
       },
       {
         name: "defeat",
