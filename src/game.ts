@@ -235,10 +235,10 @@ class Game {
 
       this.fireballUpdateIntervalId = setInterval(() => {
         this.updateFireBallPosition(fireBall);
-      }, 500);
+      }, 250);
       this.collisionCheckerIntervalId = setInterval(() => {
         this.collisionChecker(fireBall);
-      }, 500);
+      }, 100);
     }
   }
 

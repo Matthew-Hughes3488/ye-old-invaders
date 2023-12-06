@@ -24,6 +24,7 @@ class Projectile {
     //projectileElement.style.transform = "rotate(180deg)";
     projectileElement.style.gridColumn = `${this.xCordinate} / span 1`;
     projectileElement.style.gridRow = `${this.yCordinate} / span 1`;
+    projectileElement.style.animation= "move-up-animation 2s ease-in-out";
     return projectileElement;
   }
 
@@ -34,7 +35,6 @@ class Projectile {
 
   public moveUp() {
       this.yCordinate--;
-      this.updateCordinates();
   }
 }
 
