@@ -2,14 +2,14 @@
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(8, calc($grid-width/8));
-  grid-template-rows: repeat(8, calc($grid-height/8));
+  grid-template-columns: repeat(8, calc($grid-width-mobile/8));
+  grid-template-rows: repeat(8, calc($grid-height-mobile/8));
   background-color: $color-dark-brown;
   margin: 10px;
 
   border: 2px solid $color-light-brown;
-  width: $grid-width;
-  height: $grid-height;
+  width: $grid-width-mobile;
+  height: $grid-height-mobile;
 
   &__player-character {
     width: 100%;
@@ -19,7 +19,8 @@
   &__goblin {
     width: 100%;
     height: auto;
-    align-self: flex-start;
+    max-height: 100%;
+    align-self: flex-end;
   }
   &__fireball {
     width: 100%;
@@ -46,18 +47,45 @@
 
 @keyframes move-left-animation {
   to {
-    transform: translateX(calc(-1 * ($grid-width / 8)));
+    transform: translateX(calc(-1 * ($grid-width-mobile / 8)));
   }
 }
 
 @keyframes move-right-animation {
   to {
-    transform: translateX(calc($grid-width / 8));
+    transform: translateX(calc($grid-width-mobile / 8));
   }
 }
 
 @keyframes move-up-animation {
   to {
-    transform: translateY(calc(-1 * ($grid-height - 2 * ($grid-height/8))));
+    transform: translateY(calc(-1 * ($grid-height-mobile - 2 * ($grid-height-mobile/8))));
+  }
+}
+
+@media screen and (min-width:768px){
+  .game-board {
+    grid-template-columns: repeat(8, calc($grid-width/8));
+    grid-template-rows: repeat(8, calc($grid-height/8));
+    width: $grid-width;
+    height: $grid-height;
+  }
+
+  @keyframes move-left-animation {
+    to {
+      transform: translateX(calc(-1 * ($grid-width / 8)));
+    }
+  }
+  
+  @keyframes move-right-animation {
+    to {
+      transform: translateX(calc($grid-width / 8));
+    }
+  }
+  
+  @keyframes move-up-animation {
+    to {
+      transform: translateY(calc(-1 * ($grid-height - 2 * ($grid-height/8))));
+    }
   }
 }
