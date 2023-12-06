@@ -2,14 +2,14 @@
 
 .game-board {
   display: grid;
-  grid-template-columns: repeat(8, 8.75vw);
-  grid-template-rows: repeat(8, 11.25vh);
+  grid-template-columns: repeat(8, calc($grid-width/8));
+  grid-template-rows: repeat(8, calc($grid-height/8));
   background-color: $color-dark-brown;
   margin: 10px;
 
   border: 2px solid $color-light-brown;
-  width: 70vw;
-  height: 90vh;
+  width: $grid-width;
+  height: $grid-height;
 
   &__player-character {
     width: 100%;
@@ -44,18 +44,18 @@
 
 @keyframes move-left-animation {
   to {
-    transform: translateX(-10vw);
+    transform: translateX(calc(-1 * ($grid-width / 8)));
   }
 }
 
 @keyframes move-right-animation {
   to {
-    transform: translateX(10vw);
+    transform: translateX(calc($grid-width / 8));
   }
 }
 
 @keyframes move-up-animation {
   to {
-    transform: translateY(-60vh);
+    transform: translateY(calc(-1 * ($grid-height - 2 * ($grid-height/8))));
   }
 }
