@@ -1,8 +1,8 @@
-import Goblin from "./goblin";
-import Wizard from "./wizard";
-import Projectile from "./projectile";
-import GameAudio from "./audio";
-import gameAudioType from "./gameAudioType";
+import Goblin from "./Goblin";
+import Wizard from "./Wizard";
+import Projectile from "./Projectile";
+import GameAudio from "./GameAudio";
+import gameAudioType from "./GameAudioType";
 
 /**
  * The Game class represents the main game logic and functionality.

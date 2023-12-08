@@ -1,4 +1,4 @@
-import GameAudio from "./audio";
+import GameAudio from "./GameAudio";
 
 type gameAudioType = {
   name: string;
