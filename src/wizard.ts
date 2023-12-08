@@ -16,11 +16,17 @@ class Wizard {
     return this.yCordinate;
   }
 
+  /**
+   * Updates the Wizard's HTML element with the current coordinates.
+   */
   public updateCordinates() {
     this.element.style.gridColumn = `${this.xCordinate} / span 1`;
     this.element.style.gridRow = `${this.yCordinate} / span 1`;
   }
 
+  /**
+   * Moves the Wizard to the right, triggering a rightward animation.
+   */
   public moveRight() {
     if (!this.isMoving) {
       this.isMoving = true;
@@ -30,6 +36,9 @@ class Wizard {
     }
   }
 
+  /**
+   * Moves the Wizard to the left, triggering a leftward animation.
+   */
   public moveLeft() {
     if (!this.isMoving) {
       this.xCordinate--;
@@ -38,7 +47,13 @@ class Wizard {
       this.animationEndListener();
     }
   }
-  
+
+  /**
+   * Creates an HTML element representing the Wizard.
+   *
+   * @private
+   * @returns {HTMLImageElement} The HTML element representing the Wizard.
+   */
   private getHTML() {
     const wizardElement = document.createElement("img");
     wizardElement.src = "./src/images/wizard.png";
@@ -48,6 +63,11 @@ class Wizard {
     return wizardElement;
   }
 
+  /**
+   * Adds an event listener to the animation end event to handle the end of movement animation.
+   *
+   * @private
+   */
   private animationEndListener() {
     this.element.addEventListener(
       "animationend",
@@ -60,6 +80,11 @@ class Wizard {
     );
   }
 
+  /**
+   * Stops the movement animation of the Wizard.
+   *
+   * @private
+   */
   private stopMovementAnimation() {
     this.element.style.animation = "none";
   }
