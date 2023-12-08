@@ -12,10 +12,10 @@ class Projectile {
    * @param xValue - The initial x-coordinate of the projectile.
    * @param yValue - The initial y-coordinate of the projectile.
    */
-  constructor(xValue: number, yValue: number) {
+  constructor(xValue: number, yValue: number, projectileImgSrc: string) {
     this.xCordinate = xValue;
     this.yCordinate = yValue;
-    this.element = this.getHTML();
+    this.element = this.getHTML(projectileImgSrc);
   }
 
   /**
@@ -42,9 +42,9 @@ class Projectile {
    * @private
    * @returns {HTMLImageElement} The HTML element representing the projectile.
    */
-  private getHTML() {
+  private getHTML(projectileImgSrc: string) {
     const projectileElement = document.createElement("img");
-    projectileElement.src = "./src/images/fireball.png";
+    projectileElement.src = projectileImgSrc;
     projectileElement.classList.add("game-board__fireball");
     projectileElement.style.gridColumn = `${this.xCordinate} / span 1`;
     projectileElement.style.gridRow = `${this.yCordinate} / span 1`;

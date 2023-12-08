@@ -48,7 +48,7 @@ class Goblin {
    */
   private getHTML() {
     const goblinElement = document.createElement("img");
-    goblinElement.src = "./src/images/goblin.png";
+    goblinElement.src = "images/goblin.png";
     goblinElement.classList.add("game-board__goblin");
     goblinElement.classList.add(`game-board--goblin-${Goblin.numOfGoblins++}`);
     goblinElement.style.gridColumn = `${this.xCordinate} / span 1`;

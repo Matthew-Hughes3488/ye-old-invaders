@@ -39,27 +39,27 @@ class Game {
     this.gameAudioFiles = [
       {
         name: "battle theme",
-        audio: new GameAudio("./src/audio/Battle-music.mp3", 0.1),
+        audio: new GameAudio("audio/Battle-music.mp3", 0.1),
       },
       {
         name: "fireball whoosh",
-        audio: new GameAudio("./src/audio/Fireball-whoosh.mp3", 0.4),
+        audio: new GameAudio("audio/Fireball-whoosh.mp3", 0.4),
       },
       {
         name: "fireball impact",
-        audio: new GameAudio("./src/audio/Fireball-impact.mp3", 0.2),
+        audio: new GameAudio("audio/Fireball-impact.mp3", 0.2),
       },
       {
         name: "goblin death",
-        audio: new GameAudio("./src/audio/goblin-death.mp3", 0.6),
+        audio: new GameAudio("audio/goblin-death.mp3", 0.6),
       },
       {
         name: "defeat",
-        audio: new GameAudio("./src/audio/Defeat.mp3", 0.2),
+        audio: new GameAudio("audio/Defeat.mp3", 0.2),
       },
       {
         name: "victory",
-        audio: new GameAudio("./src/audio/Victory.mp3", 0.2),
+        audio: new GameAudio("audio/Victory.mp3", 0.2),
       },
     ];
 
@@ -198,7 +198,7 @@ class Game {
   private createFireball(): Projectile {
     const xValue = this.wizard.getXCordinate();
     const yValue = this.wizard.getYCordinate() - 1;
-    const fireBall = new Projectile(xValue, yValue);
+    const fireBall = new Projectile(xValue, yValue, "images/fireball.png");
     this.gameBoardElement.appendChild(fireBall.element);
     return fireBall;
   }
