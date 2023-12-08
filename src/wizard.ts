@@ -4,14 +4,27 @@ class Wizard {
   private isMoving: boolean = false;
   public element: HTMLImageElement;
 
+  /**
+   * Creates a new Wizard character and initializes its HTML element.
+   */
   constructor() {
     this.element = this.getHTML();
   }
 
+  /**
+   * Gets the current x-coordinate of the Wizard.
+   *
+   * @returns {number} The x-coordinate of the Wizard.
+   */
   public getXCordinate(): number {
     return this.xCordinate;
   }
 
+  /**
+   * Gets the current y-coordinate of the Wizard.
+   *
+   * @returns {number} The y-coordinate of the Wizard.
+   */
   public getYCordinate(): number {
     return this.yCordinate;
   }

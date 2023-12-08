@@ -9,17 +9,33 @@ class Goblin {
   public element: HTMLImageElement;
   public static movementDirection: string = "right";
 
+  /**
+   * Creates a new Goblin with the specified coordinates.
+   *
+   * @param xValue - The initial x-coordinate of the Goblin.
+   * @param yValue - The initial y-coordinate of the Goblin.
+   */
   constructor(xValue: number, yValue: number) {
     this.xCordinate = xValue;
     this.yCordinate = yValue;
     this.goblinID = Goblin.numOfGoblins;
     this.element = this.getHTML();
   }
-
+  
+  /**
+   * Gets the current x-coordinate of the Goblin.
+   *
+   * @returns The x-coordinate of the Goblin.
+   */
   public getXCordinate(): number {
     return this.xCordinate;
   }
 
+  /**
+   * Gets the current y-coordinate of the Goblin.
+   *
+   * @returns The y-coordinate of the Goblin.
+   */
   public getYCordinate(): number {
     return this.yCordinate;
   }
