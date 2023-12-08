@@ -400,7 +400,7 @@ class Game {
 
     const image = document.createElement("img");
     image.classList.add("game-board__game-over-meme");
-    image.src = "./src/images/happy-wizard.gif";
+    image.src = "images/happy-wizard.gif";
 
     this.gameBoardElement.appendChild(message);
     this.gameBoardElement.appendChild(image);
@@ -419,7 +419,7 @@ class Game {
 
     const image = document.createElement("img");
     image.classList.add("game-board__game-over-meme");
-    image.src = "./src/images/sad-wizard.gif";
+    image.src = "images/sad-wizard.gif";
 
     this.gameBoardElement.appendChild(message);
     this.gameBoardElement.appendChild(image);
