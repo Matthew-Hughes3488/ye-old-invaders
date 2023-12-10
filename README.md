@@ -1,7 +1,18 @@
-# ye-old-invaders
+# Ye Old Invaders
+
+Ye Old Invaders is a classic space invaders game with a magical twist! Instead of spaceships, you control a wizard defending the realm against goblin invaders. Cast spells, dodge goblins, and see how long you can protect the magical kingdom.
+
+## Table of Contents
+
+- [Classes](#classes)
+  - [Wizard](#1-wizard-class)
+  - [Goblin](#2-goblin-class)
+  - [Projectile](#3-projectile-class)
+  - [GameAudio](#4-gameaudio-class)
+  - [Game](#5-game-class)
 
 
-
+## Classes
 
 ### 1. Wizard Class
 
@@ -110,3 +121,22 @@ The `Game` class serves as the core of the game, managing goblins, the wizard, p
 - Interval-based Mechanics: Utilizes intervals for goblin movements, fireball updates, collision checks, and game-over conditions, ensuring smooth game progression.
 - Win/Loss Feedback: Displays tailored messages and images on the game board for victory and defeat scenarios, enhancing player feedback.
 - Game Reset: Enables game reset functionality, clearing intervals, the game board, and restarting with a fresh game state.
+
+## Usage Example
+
+```typescript
+// Create a new Game instance
+const game = new Game();
+
+// Start the game
+game.startGame();
+
+// Stop the game with a victory condition
+game.stopGame(true);
+
+// Stop the game with a defeat condition
+game.stopGame(false);
+
+// Reset the game state to the initial configuration
+game.resetGame();
+```
