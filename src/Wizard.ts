@@ -1,3 +1,6 @@
+/**
+ * Represents a Wizard in the game.
+ */
 class Wizard {
   private xCordinate: number = 4;
   private yCordinate: number = 8;
