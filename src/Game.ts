@@ -569,10 +569,10 @@ class Game {
       new Goblin(4, 3),
       new Goblin(5, 3),
     ];
+    
     Goblin.movementDirection = "right";
 
     this.stopAllAudio();
-
     this.clearAllIntervals();
     this.clearGameBoard();
     document.body.removeChild(this.gameBoardElement);
