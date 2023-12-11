@@ -1,6 +1,6 @@
 # Ye Old Invaders
 
-Ye Old Invaders is a classic space invaders game with a magical twist! Instead of spaceships, you control a wizard defending the realm against goblin invaders. Cast spells, dodge goblins, and see how long you can protect the magical kingdom.
+Ye Old Invaders is a classic space invaders game with a magical twist! Instead of spaceships, you control a wizard defending the realm against goblin invaders. Cast spells, dodge goblins, and see if you can defeat them before they make it... to you!
 
 ## Table of Contents
 
