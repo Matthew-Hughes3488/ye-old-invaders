@@ -563,6 +563,11 @@ class Game {
       new Goblin(3, 2),
       new Goblin(4, 2),
       new Goblin(5, 2),
+      new Goblin(1, 3),
+      new Goblin(2, 3),
+      new Goblin(3, 3),
+      new Goblin(4, 3),
+      new Goblin(5, 3),
     ];
     Goblin.movementDirection = "right";
 
